@@ -1,0 +1,72 @@
+<%= form_with(model: persson) do |form| %>
+  <% if persson.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(persson.errors.count, "error") %> prohibited this persson from being saved:</h2>
+
+      <ul>
+        <% persson.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :first_name, style: "display: block" %>
+    <%= form.text_field :first_name %>
+  </div>
+
+  <div>
+    <%= form.label :last_name, style: "display: block" %>
+    <%= form.text_field :last_name %>
+  </div>
+
+  <div>
+    <%= form.label :father_nane, style: "display: block" %>
+    <%= form.text_field :father_nane %>
+  </div>
+
+  <div>
+    <%= form.label :name_for_contract, style: "display: block" %>
+    <%= form.text_field :name_for_contract %>
+  </div>
+
+  <div>
+    <%= form.label :phone, style: "display: block" %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div>
+    <%= form.label :email, style: "display: block" %>
+    <%= form.text_field :email %>
+  </div>
+
+  <div>
+    <%= form.label :send_adress, style: "display: block" %>
+    <%= form.text_field :send_adress %>
+  </div>
+
+  <div>
+    <%= form.label :role, style: "display: block" %>
+    <%= form.text_field :role %>
+  </div>
+
+  <div>
+    <%= form.label :birth_data, style: "display: block" %>
+    <%= form.date_field :birth_data %>
+  </div>
+
+  <div>
+    <%= form.label :note_data, style: "display: block" %>
+    <%= form.text_field :note_data %>
+  </div>
+
+  <div>
+    <%= form.label :other_data, style: "display: block" %>
+    <%= form.text_field :other_data %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

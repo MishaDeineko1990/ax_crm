@@ -1,0 +1,39 @@
+<p style="color: green"><%= notice %></p>
+
+<% content_for :title, "Perssons" %>
+
+<h1>Perssons</h1>
+
+<%= link_to "New Person", new_persson_path, class: "btn btn-primary mb-3" %>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @perssons.each do |persson| %>
+              <tr>
+                <td><%= persson.id %></td>
+                <td><%= persson.first_name %></td>
+                <td><%= persson.last_name %></td>
+                <td><%= persson.phone %></td>
+                <td><%= persson.email %></td>
+                <td>
+                  <%= link_to 'Show', persson, class: "btn btn-info btn-sm" %>
+                  <%= link_to 'Edit', edit_persson_path(persson), class: "btn btn-warning btn-sm" %>
+                  <%= link_to 'Delete', persson, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>

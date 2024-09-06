@@ -10,21 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_08_27_111522) do
-
-  create_table "people", force: :cascade do |t|
+ActiveRecord::Schema[7.2].define(version: 2024_09_06_081804) do
+  create_table "perssons", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "father_name"
-    t.string "phone_number"
+    t.string "father_nane"
+    t.string "name_for_contract"
+    t.string "phone"
     t.string "email"
-    t.date "birth_data_time"
+    t.string "send_adress"
+    t.string "role"
+    t.date "birth_data"
     t.string "note_data"
     t.string "other_data"
-    t.string "position"
-    t.string "sex"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
-
 end
