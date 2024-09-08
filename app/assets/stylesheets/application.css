@@ -13,3 +13,66 @@
  *= require_tree .
  *= require_self
  */
+
+/* Base styles for dark theme */
+/* Base styles for improved readability */
+.bg-light {
+    background-color: #f8f9fa !important;
+  }
+  
+  .text-dark {
+    color: #212529 !important;
+  }
+  
+  .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+  }
+  
+  .hide-section {
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    overflow: hidden;
+  }
+  
+  .collapsed {
+    max-height: 0;
+    padding: 0;
+  }
+  
+  .show-more {
+    max-height: 1000px; /* Ensure enough height to show content */
+    padding: 1rem;
+  }
+  
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  
+
+
+  /* Ensure the button is properly aligned with the text field */
+.input-group {
+    display: flex;
+  }
+  
+  .input-group-text {
+    cursor: pointer;
+  }
+  
+  .btn-outline-secondary {
+    border-color: #6c757d;
+    color: #6c757d;
+  }
+  
+  .btn-outline-secondary:hover {
+    background-color: #e2e6ea;
+    border-color: #6c757d;
+  }
+  
+  
