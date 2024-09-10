@@ -99,6 +99,10 @@
       <%= form.label :other_data, "Other Data", class: "form-label" %>
       <%= form.text_field :other_data, class: "form-control" %>
     </div>
+
+    <div class="mb-3">
+      <%= form.number_field :user_id, id: :person_user_id, class: "form-control", value: current_user.id, type: :hidden %>
+    </div>
   </div>
 
   <div class="mt-3">

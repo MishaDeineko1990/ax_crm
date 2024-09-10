@@ -1,5 +1,6 @@
 class PerssonsController < ApplicationController
   before_action :set_persson, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /perssons or /perssons.json
   def index
@@ -65,6 +66,6 @@ class PerssonsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def persson_params
-      params.require(:persson).permit(:first_name, :last_name, :father_nane, :name_for_contract, :phone, :email, :send_adress, :role, :birth_data, :note_data, :other_data)
+      params.require(:persson).permit(:first_name, :last_name, :father_nane, :name_for_contract, :phone, :email, :send_adress, :role, :birth_data, :note_data, :other_data, :user_id)
     end
 end

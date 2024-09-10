@@ -20,7 +20,8 @@
           </thead>
           <tbody>
             <% @perssons.each do |persson| %>
-              <tr>
+              <% if persson.user == current_user %>  
+                <tr>
                 <td><%= persson.id %></td>
                 <td><%= persson.first_name %></td>
                 <td><%= persson.last_name %></td>
@@ -31,7 +32,8 @@
                   <%= link_to 'Edit', edit_persson_path(persson), class: "btn btn-warning btn-sm" %>
                   <%= link_to 'Delete', persson, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %>
                 </td>
-              </tr>
+                </tr>
+              <% end %>
             <% end %>
           </tbody>
         </table>
