@@ -1,5 +1,7 @@
 https://docs.google.com/spreadsheets/d/1vcjZ-UvS8YjYzaEQa57y_2Hn2Lhp7QzG/edit?gid=617952989#gid=617952989
 
+https://www.youtube.com/watch?v=iF8caVyDi5g&list=PLCC34OHNcOtrk3BDsfZwf4GattdLoKCOF&ab_channel=Codemy.com
+
 https://docs.vultr.com/how-to-install-postgresql-on-ubuntu-24-04                             psql
 
 
