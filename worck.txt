@@ -4,6 +4,6 @@ https://www.youtube.com/watch?v=iF8caVyDi5g&list=PLCC34OHNcOtrk3BDsfZwf4GattdLoK
 
 https://docs.vultr.com/how-to-install-postgresql-on-ubuntu-24-04                             psql
 
-
+https://fonts.google.com/icons google icons
 
 
