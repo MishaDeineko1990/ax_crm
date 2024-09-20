@@ -7,7 +7,9 @@
           <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
 
-            <%= current_user.email %>
+              <% if user_signed_in? %>
+                <%= current_user.email %>
+              <% end %>
 
               <%= link_to perssons_path, class: "nav-link" do %>
                 <i class="material-icons">perm_identity</i>
