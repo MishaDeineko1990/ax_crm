@@ -7,3 +7,10 @@ https://docs.vultr.com/how-to-install-postgresql-on-ubuntu-24-04                
 https://fonts.google.com/icons google icons
 
 
+      #*******       RIGHT SLIDER ********
+      
+      #<div class="sidebar p-3">
+      #  <!-- Слайдер або інший контент -->
+      #  <h2>Sidebar</h2>
+      #  <p>This is the sidebar area.</p>
+      #</div>
