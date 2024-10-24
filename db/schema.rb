@@ -10,9 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_13_130057) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_14_094821) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name"
+    t.string "short_name"
+    t.string "ederpou"
+    t.string "ipn"
+    t.string "type_rent"
+    t.string "factic_address"
+    t.string "legal_address"
+    t.string "send_address"
+    t.string "number_count_bank"
+    t.string "mfo"
+    t.string "name_and_requisites_bank"
+    t.string "phone"
+    t.string "mail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_organizations_on_user_id"
+  end
 
   create_table "perssons", force: :cascade do |t|
     t.string "first_name"
@@ -29,6 +49,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_13_130057) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
+    t.integer "organization_id"
     t.index ["user_id"], name: "index_perssons_on_user_id"
   end
 

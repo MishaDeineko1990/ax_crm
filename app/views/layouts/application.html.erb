@@ -19,6 +19,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+    <style>
+
+      .container {
+        display: flex; /* Встановлює flex-контейнер */
+        height: 100vh; /* Висота контейнера на весь екран */
+      }
+      .main-content {
+        flex: 1; /* Основний блок займає весь простір, окрім бокового */
+        overflow: auto; /* Додає прокрутку при необхідності */
+      }
+      .sidebar {
+        flex: 0 0 30%; /* Боковий блок займає 30% ширини контейнера */
+        height: 100%; /* Висота бокового блоку на всю висоту контейнера */
+        overflow: auto; /* Додає прокрутку при необхідності */
+      }
+
+    </style>
+
 
   </head>
 
@@ -29,8 +47,14 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
-    <div class="container my-2">
-      <%= yield %>
+    
+    <div class="container" style="width: 100%;">
+      <div class="main-content p-3">
+
+        <%= yield %>
+
+      </div>
+
     </div>
 
     <!-- Footer -->
