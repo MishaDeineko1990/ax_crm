@@ -11,15 +11,42 @@
                 <%= current_user.email %>
               <% end %>
 
-              <%= link_to perssons_path, class: "nav-link" do %>
-                <i class="material-icons">perm_identity</i>
-              <% end %>
 
-              <%= link_to organizations_path, class: "nav-link" do %>
-                <i class="material-icons">assured_workload</i>
-              <% end %>
 
-  
+
+
+            
+
+
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="material-icons">hdr_strong</i>
+  </a>
+  <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+    <%= link_to perssons_path, class: "nav-link" do %>
+      <i class="material-icons">perm_identity</i>
+    <% end %>
+
+    <%= link_to organizations_path, class: "nav-link" do %>
+      <i class="material-icons">assured_workload</i>
+    <% end %>
+    </div>
+</li>
+    
+
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <i class="material-icons">calculate</i>
+  </a>
+  <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+    <a class="dropdown-item text-white" href="#">Action</a>
+    <a class="dropdown-item text-white" href="#">Another action</a>
+    <a class="dropdown-item text-white" href="#">Something else here</a>
+  </div>
+</li>
+
+
+
               <% if user_signed_in? %>
 
                 <li class="nav-item">

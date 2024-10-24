@@ -76,3 +76,30 @@
   }
   
   
+/* open block menu */
+
+  .nav-block {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .additional-links {
+    display: none;
+    position: absolute;
+    top: 100%; /* Відображення під основним блоком */
+    left: 0;
+    border: 1px solid #ccc; /* Додайте рамку для візуалізації (можете змінити) */
+    padding: 5px;
+    z-index: 1;
+  }
+  
+  .nav-block:hover .additional-links {
+    display: block; /* Показати при наведенні */
+  }
+  
+  .nav-icon {
+    display: inline-block;
+    margin: 0 5px; /* Відстань між іконками */
+    color: white; /* Колір іконок */
+  }
+  
