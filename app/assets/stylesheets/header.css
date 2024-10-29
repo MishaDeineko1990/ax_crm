@@ -1,0 +1,73 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+
+  #nav_top {
+    position: relative; /* або fixed, якщо ви хочете, щоб навігація завжди залишалася на місці */
+    z-index: 995; /* Високий z-index для розташування поверх інших елементів */
+}
+
+.popup_right_menu_1 {
+    position: fixed;
+    top: 60px; /* Відступ 100px з верху */
+    right: 0; /* Приклеїти до правої сторони */
+    transform: translate(0, 0); /* Не змінюємо положення по вертикалі */
+    width: 90%; /* Ширина для десктопів */
+    height: calc(100% - 100px); /* Висота 100% мінус відступ 100px з верху */
+    background-color: #ffffffd9; /* Фон з прозорістю */
+    border: 2px solid #ccc;
+    padding: 20px;
+    z-index: 994;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: auto; /* Додаємо прокрутку, якщо вміст перевищує висоту */
+}
+
+/* Медіа-запит для планшетів та телефонів */
+@media (max-width: 768px) {
+    .popup_right_menu_1 {
+        width: 100%; /* Ширина 100% для мобільних пристроїв */
+        background-color: rgba(255, 255, 255, 1); /* Фон з прозорістю */
+    }
+}
+
+
+.overlay_right_menu_1 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(46, 45, 45, 0.5);
+  z-index: 990;
+}
+
+
+
+.toggle-button { /* клавіша відкрити та закрити */
+    position: fixed;
+    top: 67px; /* Відступ 100px з верху */
+    right: 7px; /* Приклеїти до правої сторони */
+    transform: translate(0, 0); /* Не змінюємо положення по вертикалі */
+    background-color: rgb(250, 250, 72, 0.8); /* Жовтий фон */
+    color: black; /* Чорний колір для іконки */
+    border: none; /* Без рамки */
+    border: 1px solid rgba(3, 3, 3, 0.7);;
+    border-radius: 50%; /* Кругла форма */
+    width: 35px; /* Ширина кнопки */
+    height: 35px; /* Висота кнопки */
+    display: flex;
+    align-items: center; /* Вертикальне вирівнювання іконки */
+    justify-content: center; /* Горизонтальне вирівнювання іконки */
+    cursor: pointer; /* Показує, що це кнопка */
+    outline: none; /* Без обведення при фокусі */
+    transition: background-color 0.3s; /* Анімація при наведенні */
+    z-index: 1000;
+}
+
+.toggle-button:hover {
+    background-color:  rgba(250, 217, 72, 0.8); /* Змінює колір при наведенні */
+}
+
+.hidden_right_menu_1 {
+    display: none; /* Сховати блок */
+}
