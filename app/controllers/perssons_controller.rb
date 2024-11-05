@@ -2,25 +2,20 @@ class PerssonsController < ApplicationController
   before_action :set_persson, only: %i[ show edit update destroy ]
   before_action :authenticate_user!
 
-  # GET /perssons or /perssons.json
   def index
     @perssons = Persson.all
   end
 
-  # GET /perssons/1 or /perssons/1.json
   def show
   end
 
-  # GET /perssons/new
   def new
     @persson = Persson.new
   end
 
-  # GET /perssons/1/edit
   def edit
   end
 
-  # POST /perssons or /perssons.json
   def create
     @persson = Persson.new(persson_params)
 
@@ -35,7 +30,6 @@ class PerssonsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /perssons/1 or /perssons/1.json
   def update
     respond_to do |format|
       if @persson.update(persson_params)
@@ -48,7 +42,6 @@ class PerssonsController < ApplicationController
     end
   end
 
-  # DELETE /perssons/1 or /perssons/1.json
   def destroy
     @persson.destroy!
 
@@ -59,13 +52,12 @@ class PerssonsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_persson
       @persson = Persson.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def persson_params
-      params.require(:persson).permit(:first_name, :last_name, :father_nane, :name_for_contract, :phone, :email, :send_adress, :role, :birth_data, :note_data, :other_data, :user_id)
+      params.require(:persson).permit(:first_name, :last_name, :father_nane, :name_for_contract, :phone, :email, :send_adress, :role, :birth_data, :note_data, :other_data, :user_id, :organization_id)
+
     end
 end
