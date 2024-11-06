@@ -106,9 +106,14 @@
   </div>
 
   <div class="mb-3">
-    <%= form.label :organization_id, "Organization", class: "form-label" %>
-    <%= form.collection_select :organization_id, Organization.all, :id, :name, { prompt: "Select an organization" }, class: "form-control" %>
+    <%= form.label :organization_id, "Organization", class: "form-label", id: "organization_label" %>
+    <!-- Поле для фільтрації -->
+    <input type="text" id="organization_filter" placeholder="Filter organizations..." class="form-control mb-2">
+    
+    <!-- Дропдаун із фільтрованими значеннями -->
+    <%= select_tag 'persson[organization_id]', options_for_select(Organization.all.map { |org| [org.name, org.id, { "data-ederpou" => org.ederpou }] }), prompt: "Select an organization", class: "form-control", id: "organization_select" %>
   </div>
+
 
   <div class="mt-3">
     <%= form.submit "Submit", class: "btn btn-success" %>
@@ -130,4 +135,45 @@
       });
     });
   </script>
-<% end %>
+  
+  <script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const filterInput = document.getElementById('organization_filter');
+    const selectElement = document.getElementById('organization_select');
+    const labelElement = document.getElementById('organization_label');
+
+    // Зберігаємо початкові опції для скидання фільтру
+    const originalOptions = Array.from(selectElement.options);
+
+    filterInput.addEventListener('input', () => {
+      const filterValue = filterInput.value.toLowerCase();
+
+      // Очищаємо поточні опції
+      selectElement.innerHTML = '';
+
+      // Перевіряємо, чи введення починається з цифри
+      const isNumeric = /^\d/.test(filterValue);
+
+      // Фільтруємо опції
+      const filteredOptions = originalOptions.filter(option => {
+        if (option.value === "") return true; // залишаємо порожню опцію (prompt)
+        if (isNumeric) {
+          // Фільтруємо по ederpou (перевіряємо частковий збіг)
+          return option.dataset.ederpou && option.dataset.ederpou.toLowerCase().includes(filterValue);
+        } else {
+          // Фільтруємо по name
+          return option.text.toLowerCase().includes(filterValue);
+        }
+      });
+
+      // Додаємо відфільтровані опції до select
+      filteredOptions.forEach(option => selectElement.add(option));
+
+      // Змінюємо текст label в залежності від типу фільтрації
+      labelElement.textContent = isNumeric ? "Organization (filtered by EDRPOU)" : "Organization (filtered by Name)";
+    });
+  });
+</script>
+
+
+  <% end %>
