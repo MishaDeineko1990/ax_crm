@@ -1,0 +1,31 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  short_name: MyString
+  ederpou: MyString
+  ipn: MyString
+  type_rent: MyString
+  factic_address: MyString
+  legal_address: MyString
+  send_address: MyString
+  number_count_bank: MyString
+  mfo: MyString
+  name_and_requisites_bank: MyString
+  phone: MyString
+  mail: MyString
+
+two:
+  name: MyString
+  short_name: MyString
+  ederpou: MyString
+  ipn: MyString
+  type_rent: MyString
+  factic_address: MyString
+  legal_address: MyString
+  send_address: MyString
+  number_count_bank: MyString
+  mfo: MyString
+  name_and_requisites_bank: MyString
+  phone: MyString
+  mail: MyString

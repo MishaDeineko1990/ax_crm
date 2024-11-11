@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :tovars
+  resources :sale_organizations
+  resources :oue_organizations
+  resources :goods
   resources :organizations
   
   devise_for :users

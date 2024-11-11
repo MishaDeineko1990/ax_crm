@@ -1,0 +1,72 @@
+<%= form_with(model: tovar) do |form| %>
+  <% if tovar.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(tovar.errors.count, "error") %> prohibited this tovar from being saved:</h2>
+
+      <ul>
+        <% tovar.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :length, style: "display: block" %>
+    <%= form.number_field :length %>
+  </div>
+
+  <div>
+    <%= form.label :width, style: "display: block" %>
+    <%= form.number_field :width %>
+  </div>
+
+  <div>
+    <%= form.label :height, style: "display: block" %>
+    <%= form.number_field :height %>
+  </div>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :weight, style: "display: block" %>
+    <%= form.text_field :weight %>
+  </div>
+
+  <div>
+    <%= form.label :price, style: "display: block" %>
+    <%= form.text_field :price %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_field :description %>
+  </div>
+
+  <div>
+    <%= form.label :image, style: "display: block" %>
+    <%= form.text_field :image %>
+  </div>
+
+  <div>
+    <%= form.label :tags, style: "display: block" %>
+    <%= form.text_field :tags %>
+  </div>
+
+  <div>
+    <%= form.label :custom_data, style: "display: block" %>
+    <%= form.text_field :custom_data %>
+  </div>
+
+  <div>
+    <%= form.label :other_data, style: "display: block" %>
+    <%= form.text_field :other_data %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

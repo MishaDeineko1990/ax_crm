@@ -1,0 +1,2 @@
+module OueOrganizationsHelper
+end

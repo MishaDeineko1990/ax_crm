@@ -1,0 +1,2 @@
+class SaleOrganization < ApplicationRecord
+end

@@ -1,0 +1,2 @@
+class OueOrganization < ApplicationRecord
+end

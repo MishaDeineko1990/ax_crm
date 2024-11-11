@@ -1,0 +1,12 @@
+<% content_for :title, "Editing tovar" %>
+
+<h1>Editing tovar</h1>
+
+<%= render "form", tovar: @tovar %>
+
+<br>
+
+<div>
+  <%= link_to "Show this tovar", @tovar %> |
+  <%= link_to "Back to tovars", tovars_path %>
+</div>

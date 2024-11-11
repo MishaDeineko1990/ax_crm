@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @tovar %>
+
+<div>
+  <%= link_to "Edit this tovar", edit_tovar_path(@tovar) %> |
+  <%= link_to "Back to tovars", tovars_path %>
+
+  <%= button_to "Destroy this tovar", @tovar, method: :delete %>
+</div>

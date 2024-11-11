@@ -1,0 +1,82 @@
+<%= form_with(model: sale_organization) do |form| %>
+  <% if sale_organization.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(sale_organization.errors.count, "error") %> prohibited this sale_organization from being saved:</h2>
+
+      <ul>
+        <% sale_organization.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :name, style: "display: block" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div>
+    <%= form.label :short_name, style: "display: block" %>
+    <%= form.text_field :short_name %>
+  </div>
+
+  <div>
+    <%= form.label :ederpou, style: "display: block" %>
+    <%= form.text_field :ederpou %>
+  </div>
+
+  <div>
+    <%= form.label :ipn, style: "display: block" %>
+    <%= form.text_field :ipn %>
+  </div>
+
+  <div>
+    <%= form.label :type_rent, style: "display: block" %>
+    <%= form.text_field :type_rent %>
+  </div>
+
+  <div>
+    <%= form.label :factic_address, style: "display: block" %>
+    <%= form.text_field :factic_address %>
+  </div>
+
+  <div>
+    <%= form.label :legal_address, style: "display: block" %>
+    <%= form.text_field :legal_address %>
+  </div>
+
+  <div>
+    <%= form.label :send_address, style: "display: block" %>
+    <%= form.text_field :send_address %>
+  </div>
+
+  <div>
+    <%= form.label :number_count_bank, style: "display: block" %>
+    <%= form.text_field :number_count_bank %>
+  </div>
+
+  <div>
+    <%= form.label :mfo, style: "display: block" %>
+    <%= form.text_field :mfo %>
+  </div>
+
+  <div>
+    <%= form.label :name_and_requisites_bank, style: "display: block" %>
+    <%= form.text_field :name_and_requisites_bank %>
+  </div>
+
+  <div>
+    <%= form.label :phone, style: "display: block" %>
+    <%= form.text_field :phone %>
+  </div>
+
+  <div>
+    <%= form.label :mail, style: "display: block" %>
+    <%= form.text_field :mail %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

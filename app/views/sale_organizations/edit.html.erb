@@ -1,0 +1,12 @@
+<% content_for :title, "Editing sale organization" %>
+
+<h1>Editing sale organization</h1>
+
+<%= render "form", sale_organization: @sale_organization %>
+
+<br>
+
+<div>
+  <%= link_to "Show this sale organization", @sale_organization %> |
+  <%= link_to "Back to sale organizations", sale_organizations_path %>
+</div>

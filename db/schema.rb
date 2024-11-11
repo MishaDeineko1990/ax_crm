@@ -10,9 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_14_094821) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_11_180253) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "goods", force: :cascade do |t|
+    t.integer "length"
+    t.integer "width"
+    t.integer "height"
+    t.string "name"
+    t.string "weight"
+    t.string "price"
+    t.string "description"
+    t.string "image"
+    t.string "tags"
+    t.string "custom_data"
+    t.string "other_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "organizations", force: :cascade do |t|
     t.string "name"
@@ -34,6 +50,24 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_14_094821) do
     t.index ["user_id"], name: "index_organizations_on_user_id"
   end
 
+  create_table "oue_organizations", force: :cascade do |t|
+    t.string "name"
+    t.string "short_name"
+    t.string "ederpou"
+    t.string "ipn"
+    t.string "type_rent"
+    t.string "factic_address"
+    t.string "legal_address"
+    t.string "send_address"
+    t.string "number_count_bank"
+    t.string "mfo"
+    t.string "name_and_requisites_bank"
+    t.string "phone"
+    t.string "mail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "perssons", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -51,6 +85,40 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_14_094821) do
     t.integer "user_id"
     t.integer "organization_id"
     t.index ["user_id"], name: "index_perssons_on_user_id"
+  end
+
+  create_table "sale_organizations", force: :cascade do |t|
+    t.string "name"
+    t.string "short_name"
+    t.string "ederpou"
+    t.string "ipn"
+    t.string "type_rent"
+    t.string "factic_address"
+    t.string "legal_address"
+    t.string "send_address"
+    t.string "number_count_bank"
+    t.string "mfo"
+    t.string "name_and_requisites_bank"
+    t.string "phone"
+    t.string "mail"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tovars", force: :cascade do |t|
+    t.integer "length"
+    t.integer "width"
+    t.integer "height"
+    t.string "name"
+    t.string "weight"
+    t.string "price"
+    t.string "description"
+    t.string "image"
+    t.string "tags"
+    t.string "custom_data"
+    t.string "other_data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

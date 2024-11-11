@@ -1,0 +1,11 @@
+<% content_for :title, "New tovar" %>
+
+<h1>New tovar</h1>
+
+<%= render "form", tovar: @tovar %>
+
+<br>
+
+<div>
+  <%= link_to "Back to tovars", tovars_path %>
+</div>
