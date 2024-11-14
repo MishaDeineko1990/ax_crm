@@ -24,7 +24,7 @@ class OrganizationsTest < ApplicationSystemTestCase
     fill_in "Name and requisites bank", with: @organization.name_and_requisites_bank
     fill_in "Number count bank", with: @organization.number_count_bank
     fill_in "Phone", with: @organization.phone
-    fill_in "Send address", with: @organization.send_address
+    fill_in "Send address", with: @organization.send_adress
     fill_in "Short name", with: @organization.short_name
     fill_in "Type rent", with: @organization.type_rent
     click_on "Create Organization"
@@ -47,7 +47,7 @@ class OrganizationsTest < ApplicationSystemTestCase
     fill_in "Name and requisites bank", with: @organization.name_and_requisites_bank
     fill_in "Number count bank", with: @organization.number_count_bank
     fill_in "Phone", with: @organization.phone
-    fill_in "Send address", with: @organization.send_address
+    fill_in "Send address", with: @organization.send_adress
     fill_in "Short name", with: @organization.short_name
     fill_in "Type rent", with: @organization.type_rent
     click_on "Update Organization"

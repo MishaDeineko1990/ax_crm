@@ -19,6 +19,11 @@ class PerssonsController < ApplicationController
   def create
     @persson = Persson.new(persson_params)
 
+   
+    Rails.logger.debug "Organization ID: #{@persson.organization_id}"  # Додає лог для перевірки значення
+  
+
+
     respond_to do |format|
       if @persson.save
         format.html { redirect_to persson_url(@persson), notice: "Persson was successfully created." }
@@ -55,9 +60,8 @@ class PerssonsController < ApplicationController
     def set_persson
       @persson = Persson.find(params[:id])
     end
-
+    
     def persson_params
-      params.require(:persson).permit(:first_name, :last_name, :father_nane, :name_for_contract, :phone, :email, :send_adress, :role, :birth_data, :note_data, :other_data, :user_id, :organization_id)
-
+      params.require(:persson).permit(:first_name, :last_name, :father_name, :name_for_contract, :phone, :email, :send_adress, :role, :birth_data, :note_data, :other_data, :user_id, :organization_id)
     end
 end

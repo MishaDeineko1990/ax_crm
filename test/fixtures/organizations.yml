@@ -8,7 +8,7 @@ one:
   type_rent: MyString
   factic_address: MyString
   legal_address: MyString
-  send_address: MyString
+  send_adress: MyString
   number_count_bank: MyString
   mfo: MyString
   name_and_requisites_bank: MyString
@@ -23,7 +23,7 @@ two:
   type_rent: MyString
   factic_address: MyString
   legal_address: MyString
-  send_address: MyString
+  send_adress: MyString
   number_count_bank: MyString
   mfo: MyString
   name_and_requisites_bank: MyString

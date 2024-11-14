@@ -1,10 +1,68 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render "form", persson: @persson %>
+<style>
+body {
+  background-color: black;
+  color: white;
+}
 
-<div>
-  <%= link_to "Edit this persson", edit_persson_path(@persson) %> |
-  <%= link_to "Back to perssons", perssons_path %>
+.persson-details {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #444;
+  border-radius: 10px;
+  background-color: #222;
+}
 
-  <%= button_to "Destroy this persson", @persson, method: :delete %>
+.persson-details h3 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.persson-details .btn {
+  background-color: #333;
+  color: white;
+  border: 1px solid #444;
+}
+
+.persson-details .btn:hover {
+  background-color: #444;
+}
+
+.persson-details .btn-link {
+  color: white;
+}
+
+.persson-details .btn-link:hover {
+  text-decoration: underline;
+}
+</style>
+<body>
+
+<div class="persson-details">
+<h3>Persson Details</h3>
+<p><strong>First Name:</strong> <%= @persson.first_name %></p>
+<p><strong>Last Name:</strong> <%= @persson.last_name %></p>
+<p><strong>Father's Name:</strong> <%= @persson.father_name %></p>
+<p><strong>Phone:</strong> <%= @persson.phone %></p>
+<p><strong>Email:</strong> <%= @persson.email %></p>
+<p><strong>Shipping Address:</strong> <%= @persson.send_adress %></p>
+<p><strong>Role:</strong> <%= @persson.role %></p>
+<p><strong>Birth Date:</strong> <%= @persson.birth_data %></p>
+<p><strong>Name for Contract:</strong> <%= @persson.name_for_contract %></p>
+<p><strong>Note Data:</strong> <%= @persson.note_data %></p>
+<p><strong>Other Data:</strong> <%= @persson.other_data %></p>
+<p><strong>Organization:</strong> <%= @persson.organization.name %></p> <!-- Відображаємо назву організації -->
+
+
+<div class="text-center">
+  <%= link_to "Edit this Persson", edit_persson_path(@persson), class: "btn btn-link" %> |
+  <%= link_to "Back to Perssons", perssons_path, class: "btn btn-link" %>
 </div>
+
+<div class="text-center mt-3">
+  <%= button_to "Destroy this Persson", @persson, method: :delete, class: "btn btn-danger" %>
+</div>
+</div>
+

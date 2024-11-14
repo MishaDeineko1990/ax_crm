@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_11_180253) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_14_012026) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -38,7 +38,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_11_180253) do
     t.string "type_rent"
     t.string "factic_address"
     t.string "legal_address"
-    t.string "send_address"
+    t.string "send_adress"
     t.string "number_count_bank"
     t.string "mfo"
     t.string "name_and_requisites_bank"
@@ -58,7 +58,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_11_180253) do
     t.string "type_rent"
     t.string "factic_address"
     t.string "legal_address"
-    t.string "send_address"
+    t.string "send_adress"
     t.string "number_count_bank"
     t.string "mfo"
     t.string "name_and_requisites_bank"
@@ -71,7 +71,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_11_180253) do
   create_table "perssons", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "father_nane"
+    t.string "father_name"
     t.string "name_for_contract"
     t.string "phone"
     t.string "email"
@@ -95,7 +95,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_11_180253) do
     t.string "type_rent"
     t.string "factic_address"
     t.string "legal_address"
-    t.string "send_address"
+    t.string "send_adress"
     t.string "number_count_bank"
     t.string "mfo"
     t.string "name_and_requisites_bank"

@@ -24,7 +24,7 @@ class SaleOrganizationsTest < ApplicationSystemTestCase
     fill_in "Name and requisites bank", with: @sale_organization.name_and_requisites_bank
     fill_in "Number count bank", with: @sale_organization.number_count_bank
     fill_in "Phone", with: @sale_organization.phone
-    fill_in "Send address", with: @sale_organization.send_address
+    fill_in "Send address", with: @sale_organization.send_adress
     fill_in "Short name", with: @sale_organization.short_name
     fill_in "Type rent", with: @sale_organization.type_rent
     click_on "Create Sale organization"
@@ -47,7 +47,7 @@ class SaleOrganizationsTest < ApplicationSystemTestCase
     fill_in "Name and requisites bank", with: @sale_organization.name_and_requisites_bank
     fill_in "Number count bank", with: @sale_organization.number_count_bank
     fill_in "Phone", with: @sale_organization.phone
-    fill_in "Send address", with: @sale_organization.send_address
+    fill_in "Send address", with: @sale_organization.send_adress
     fill_in "Short name", with: @sale_organization.short_name
     fill_in "Type rent", with: @sale_organization.type_rent
     click_on "Update Sale organization"

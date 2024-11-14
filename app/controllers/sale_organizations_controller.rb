@@ -65,6 +65,6 @@ class SaleOrganizationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def sale_organization_params
-      params.require(:sale_organization).permit(:name, :short_name, :ederpou, :ipn, :type_rent, :factic_address, :legal_address, :send_address, :number_count_bank, :mfo, :name_and_requisites_bank, :phone, :mail)
+      params.require(:sale_organization).permit(:name, :short_name, :ederpou, :ipn, :type_rent, :factic_address, :legal_address, :send_adress, :number_count_bank, :mfo, :name_and_requisites_bank, :phone, :mail)
     end
 end
