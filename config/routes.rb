@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :sales
   resources :tovars
   resources :sale_organizations
   resources :oue_organizations

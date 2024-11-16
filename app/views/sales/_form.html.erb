@@ -1,0 +1,52 @@
+<%= form_with(model: sale) do |form| %>
+  <% if sale.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(sale.errors.count, "error") %> prohibited this sale from being saved:</h2>
+
+      <ul>
+        <% sale.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+  <%= form.label :status %>
+  <%= form.number_field :status %>
+</div>
+
+<div class="field">
+  <%= form.label :note %>
+  <%= form.text_field :note %>
+</div>
+
+<div class="field">
+  <%= form.label :other_data %>
+  <%= form.text_field :other_data %>
+</div>
+
+<div class="field">
+  <%= form.label :user_id %>
+  <%= form.collection_select :user_id, User.all, :id, :name, prompt: "Виберіть користувача" %>
+</div>
+
+<div class="field">
+  <%= form.label :organization_id %>
+  <%= form.collection_select :organization_id, Organization.all, :id, :name, prompt: "Виберіть організацію" %>
+</div>
+
+<div class="field">
+  <%= form.label :oue_organization_id %>
+  <%= form.collection_select :oue_organization_id, OueOrganization.all, :id, :name, prompt: "Виберіть Oue Organization" %>
+</div>
+
+<div class="field">
+  <%= form.label :persson_id %>
+  <%= form.collection_select :persson_id, Persson.all, :id, :first_name, prompt: "Виберіть особу" %>
+</div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

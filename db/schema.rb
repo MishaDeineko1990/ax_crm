@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_14_012026) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_16_125911) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -28,6 +28,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_14_012026) do
     t.string "other_data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "sale_id", null: false
+    t.index ["sale_id"], name: "index_goods_on_sale_id"
   end
 
   create_table "organizations", force: :cascade do |t|
@@ -105,6 +107,22 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_14_012026) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sales", force: :cascade do |t|
+    t.integer "status"
+    t.string "note"
+    t.string "other_data"
+    t.bigint "user_id", null: false
+    t.bigint "organization_id"
+    t.bigint "oue_organization_id"
+    t.bigint "persson_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_sales_on_organization_id"
+    t.index ["oue_organization_id"], name: "index_sales_on_oue_organization_id"
+    t.index ["persson_id"], name: "index_sales_on_persson_id"
+    t.index ["user_id"], name: "index_sales_on_user_id"
+  end
+
   create_table "tovars", force: :cascade do |t|
     t.integer "length"
     t.integer "width"
@@ -134,4 +152,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_14_012026) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "goods", "sales"
+  add_foreign_key "sales", "organizations"
+  add_foreign_key "sales", "oue_organizations"
+  add_foreign_key "sales", "perssons"
+  add_foreign_key "sales", "users"
 end

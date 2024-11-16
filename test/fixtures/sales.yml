@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  status: 1
+  note: MyString
+  other_data: MyString
+  user: one
+  organization: one
+  oue_organization: one
+  persson: one
+
+two:
+  status: 1
+  note: MyString
+  other_data: MyString
+  user: two
+  organization: two
+  oue_organization: two
+  persson: two
