@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tags
   resources :sales
   resources :tovars
   resources :sale_organizations
