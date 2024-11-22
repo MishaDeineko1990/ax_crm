@@ -65,6 +65,6 @@ class TovarsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tovar_params
-      params.require(:tovar).permit(:length, :width, :height, :name, :weight, :price, :description, :image, :tags, :custom_data, :other_data)
+      params.require(:tovar).permit(:name, :length, :width, :height, :weight, :price, :description, :image, :custom_data, :other_data, tag_ids: [])
     end
 end

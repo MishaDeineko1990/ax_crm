@@ -1,72 +1,41 @@
-<%= form_with(model: tovar) do |form| %>
+<%= form_with(model: tovar, local: true) do |form| %>
   <% if tovar.errors.any? %>
-    <div style="color: red">
+    <div id="error_explanation">
       <h2><%= pluralize(tovar.errors.count, "error") %> prohibited this tovar from being saved:</h2>
-
       <ul>
-        <% tovar.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% tovar.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :length, style: "display: block" %>
-    <%= form.number_field :length %>
-  </div>
-
-  <div>
-    <%= form.label :width, style: "display: block" %>
-    <%= form.number_field :width %>
-  </div>
-
-  <div>
-    <%= form.label :height, style: "display: block" %>
-    <%= form.number_field :height %>
-  </div>
-
-  <div>
-    <%= form.label :name, style: "display: block" %>
+  <div class="field">
+    <%= form.label :name %>
     <%= form.text_field :name %>
   </div>
 
-  <div>
-    <%= form.label :weight, style: "display: block" %>
-    <%= form.text_field :weight %>
+  <div class="field">
+    <%= form.label :length %>
+    <%= form.number_field :length %>
   </div>
 
-  <div>
-    <%= form.label :price, style: "display: block" %>
-    <%= form.text_field :price %>
+  <div class="field">
+    <%= form.label :width %>
+    <%= form.number_field :width %>
   </div>
 
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_field :description %>
+  <div class="field">
+    <%= form.label :height %>
+    <%= form.number_field :height %>
   </div>
 
-  <div>
-    <%= form.label :image, style: "display: block" %>
-    <%= form.text_field :image %>
+  <div class="field">
+    <%= form.label :tags, "Select Tags" %><br>
+    <%= form.collection_select :tag_ids, Tag.all, :id, :l1, {}, { multiple: true, size: 5 } %>
   </div>
 
-  <div>
-    <%= form.label :tags, style: "display: block" %>
-    <%= form.text_field :tags %>
-  </div>
-
-  <div>
-    <%= form.label :custom_data, style: "display: block" %>
-    <%= form.text_field :custom_data %>
-  </div>
-
-  <div>
-    <%= form.label :other_data, style: "display: block" %>
-    <%= form.text_field :other_data %>
-  </div>
-
-  <div>
+  <div class="actions">
     <%= form.submit %>
   </div>
 <% end %>

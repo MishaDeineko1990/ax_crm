@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_16_125911) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_22_144435) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -40,7 +40,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_16_125911) do
     t.string "type_rent"
     t.string "factic_address"
     t.string "legal_address"
-    t.string "send_address"
+    t.string "send_adress"
     t.string "number_count_bank"
     t.string "mfo"
     t.string "name_and_requisites_bank"
@@ -121,6 +121,20 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_16_125911) do
     t.index ["oue_organization_id"], name: "index_sales_on_oue_organization_id"
     t.index ["persson_id"], name: "index_sales_on_persson_id"
     t.index ["user_id"], name: "index_sales_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "l1"
+    t.string "l2"
+    t.string "l3"
+    t.string "l4"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags_tovars", id: false, force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "tovar_id", null: false
   end
 
   create_table "tovars", force: :cascade do |t|

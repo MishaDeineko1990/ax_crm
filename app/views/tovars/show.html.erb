@@ -1,6 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
 <%= render @tovar %>
+<p>
+  <strong>Tags:</strong>
+  <%= @tovar.tags.map(&:l1).join(", ") %>
+</p>
 
 <div>
   <%= link_to "Edit this tovar", edit_tovar_path(@tovar) %> |
