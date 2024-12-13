@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_22_144435) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_22_142828) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -124,10 +124,13 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_22_144435) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "l1"
-    t.string "l2"
-    t.string "l3"
-    t.string "l4"
+    t.string "t1"
+    t.string "t2"
+    t.string "t3"
+    t.string "t4"
+    t.string "t5"
+    t.string "t6"
+    t.string "t7"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
