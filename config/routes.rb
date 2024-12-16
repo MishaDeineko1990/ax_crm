@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  get 'calculators/screw'
+  get 'calculators/screw_spiral'
+  get 'calculators/screw_transp'
+  get 'calculators/noria'
+  get 'calculators/belt_conw'
+  get 'calculators/chain_conv'
+  get 'calculators/silo'
   resources :tags
   resources :sales
   resources :tovars

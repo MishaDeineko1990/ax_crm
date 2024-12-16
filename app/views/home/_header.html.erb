@@ -35,14 +35,15 @@
     <i class="material-icons">calculate</i>
   </a>
   <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
-    <a class="dropdown-item text-white" href="#">Шнековий транспортер</a>
-    <a class="dropdown-item text-white" href="#">Шнек</a>
-    <a class="dropdown-item text-white" href="#">Шнекова спіраль</a>
-    <a class="dropdown-item text-white" href="#">Сегмент шнека</a>
-    <a class="dropdown-item text-white" href="#">Транспортер скребковий</a>
-    <a class="dropdown-item text-white" href="#">Транспортер стрічковий</a>
-    <a class="dropdown-item text-white" href="#">Норія</a>
-    <a class="dropdown-item text-white" href="#">Силос</a>
+    <ul>
+      <li><%= link_to "Screw", calculators_screw_path %></li>
+      <li><%= link_to "Screw Spiral", calculators_screw_spiral_path %></li>
+      <li><%= link_to "Screw Transporter", calculators_screw_transp_path %></li>
+      <li><%= link_to "Noria", calculators_noria_path %></li>
+      <li><%= link_to "Belt Conveyor", calculators_belt_conw_path %></li>
+      <li><%= link_to "Chain Conveyor", calculators_chain_conv_path %></li>
+      <li><%= link_to "Silo", calculators_silo_path %></li>
+    </ul>
   </div>
 </li>
 
