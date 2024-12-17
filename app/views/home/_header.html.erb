@@ -2,6 +2,8 @@
 
 <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav_top">
+
+        
           <%= link_to "AxCRM", root_path, class:"navbar-brand" %>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -13,6 +15,9 @@
                 <%= current_user.id %>
               <% end %>            
 
+<button class="btn btn-light"> 
+          <i class="material-icons">whatshot</i>
+</button>
 
 <li class="nav-item dropdown">
   <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -35,14 +40,14 @@
     <i class="material-icons">calculate</i>
   </a>
   <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
-    <ul>
-      <li><%= link_to "Screw", calculators_screw_path %></li>
-      <li><%= link_to "Screw Spiral", calculators_screw_spiral_path %></li>
-      <li><%= link_to "Screw Transporter", calculators_screw_transp_path %></li>
-      <li><%= link_to "Noria", calculators_noria_path %></li>
-      <li><%= link_to "Belt Conveyor", calculators_belt_conw_path %></li>
-      <li><%= link_to "Chain Conveyor", calculators_chain_conv_path %></li>
-      <li><%= link_to "Silo", calculators_silo_path %></li>
+    <ul class="list-unstyled">
+      <li><%= link_to "Шнек", calculators_screw_path, class: "custom-link" %></li>
+      <li><%= link_to "Спіраль та сегменти", calculators_screw_spiral_path, class: "custom-link" %></li>
+      <li><%= link_to "Шнековий транспортер", calculators_screw_transp_path, class: "custom-link" %></li>
+      <li><%= link_to "Норія", calculators_noria_path, class: "custom-link" %></li>
+      <li><%= link_to "Стрічковий транспортер", calculators_belt_conw_path, class: "custom-link" %></li>
+      <li><%= link_to "Ланцюговий транспортер", calculators_chain_conv_path, class: "custom-link" %></li>
+      <li><%= link_to "Силос", calculators_silo_path, class: "custom-link" %></li>
     </ul>
   </div>
 </li>

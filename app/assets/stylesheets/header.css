@@ -71,3 +71,22 @@ body {
 .hidden_right_menu_1 {
     display: none; /* Сховати блок */
 }
+
+/* links button calculator */
+.custom-link {
+    display: inline-block;
+    color: white; /* Початковий білий текст */
+    text-decoration: none;
+    padding: 8px 12px; /* Внутрішній відступ для "кнопкового" вигляду */
+    margin-bottom: 8px; /* Відступ між лінками */
+    transition: all 0.3s ease; /* Плавний ефект переходу */
+  }
+  
+  .custom-link:hover {
+    background-color: white; /* Фон кнопки при наведенні */
+    color: black; /* Чорний текст при наведенні */
+    border: 1px solid black; /* Додає рамку навколо */
+    border-radius: 4px; /* Закруглені кути */
+    text-decoration: none; /* Відключення підкреслення */
+  }
+  
