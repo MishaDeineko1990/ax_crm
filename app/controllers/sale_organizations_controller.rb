@@ -1,6 +1,7 @@
 class SaleOrganizationsController < ApplicationController
   before_action :set_sale_organization, only: %i[ show edit update destroy ]
-
+  before_action :authenticate_user!
+  
   # GET /sale_organizations or /sale_organizations.json
   def index
     @sale_organizations = SaleOrganization.all

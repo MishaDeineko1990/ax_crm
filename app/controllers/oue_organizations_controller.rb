@@ -1,5 +1,6 @@
 class OueOrganizationsController < ApplicationController
   before_action :set_oue_organization, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!
 
   # GET /oue_organizations or /oue_organizations.json
   def index
