@@ -1,3 +1,57 @@
+.btn-group { 
+    margin: 5px; 
+    display: flex; 
+    flex-direction: column; 
+} 
+
+.btn-group .btn { 
+    margin: 2px; 
+} 
+
+.label-title { 
+    color: gray; 
+    font-size: 0.9em; 
+    margin-bottom: 5px; 
+} 
+
+body { 
+    background-color: #f8f9fa; 
+    font-family: Arial, sans-serif; 
+} 
+
+.container { 
+    padding: 20px; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+} 
+
+.card { 
+    margin-top: 20px; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); 
+} 
+
+.form-group { 
+    margin-bottom: 1rem; 
+} 
+
+.btn-group { 
+    margin: 10px 0; 
+} 
+
+.card-img-top { 
+    max-width: 100%; 
+    height: auto; 
+    object-fit: contain; 
+} 
+
+.form-control { 
+    margin-bottom: 10px; 
+} 
+
+.btn-secondary { 
+    margin: 2px; 
+} 
+
 .chain-conv-container {
     padding: 20px;
 }
@@ -41,15 +95,16 @@
     border-radius: 4px;
 }
 
-.chain-conv-button {
-    background-color: #007bff;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-}
+@media (max-width: 768px) { 
+    .container { 
+        padding: 10px; 
+    } 
+    
+    .btn-group { 
+        flex-direction: column; 
+    } 
 
-.chain-conv-button:hover {
-    background-color: #0056b3;
+    .chain-conv-options {
+        flex-direction: column;
+    }
 }
