@@ -21,7 +21,7 @@ new Vue({
   },
   computed: {
     currentImage() {
-      return this.hasDistributor ? '/assets/Scraper_conveyor2.svg' : '/assets/banner22.svg';
+      return this.hasDistributor ? '/images/Scraper_conveyor2.svg' : '/images/banner22.svg';
     }
   },
   methods: {

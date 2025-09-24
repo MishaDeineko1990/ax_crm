@@ -10,3 +10,9 @@ Rails.application.config.assets.version = "1.0"
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile += %w[ admin.js admin.css ]
+
+# Add SVG to asset pipeline
+Rails.application.config.assets.configure do |env|
+  env.register_mime_type 'image/svg+xml', extensions: ['.svg']
+  env.register_preprocessor 'image/svg+xml', Sprockets::ERBProcessor
+end
