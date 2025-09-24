@@ -1,2 +1,108 @@
 <h1>Calculators#chain_conv</h1>
-<p>Find me in app/views/calculators/chain_conv.html.erb</p>
+
+    <div class="container chain-conv-container" id="distributorApp">
+    <%= stylesheet_link_tag 'chain_conv' %>
+    <%= javascript_include_tag 'chain_conv' %>
+        <div class="card">
+            <div class="card-header">
+                Транспортер шкребковий
+              </div>
+              <div class="card-body chain-conv-form">
+                <div class="row">
+                    <div class="col-sm">
+                        <div class="card mb-3" style="max-width: 70%;">
+                          <img class="card-img-top" :src="currentImage" alt="Card image cap" style="width: 100%; height: auto;">
+                        </div>
+                    </div>
+                    
+                  <div>
+
+                    <div class="col-sm">
+                        <div class="form-group">
+                            <label for="params_trans">Продуктивність транспортера</label>
+                            <select class="form-control" id="params_trans">
+                                <option value="25">ТШ 25</option>
+                                <option value="50">ТШ 50</option>
+                                <option value="100">ТШ 100</option>
+                                <option value="200">ТШ 200</option>
+                            </select>
+
+                            <div class="form-group">
+                                <label for="length_trans">Довжина транспортера, м</label>
+                                <input type="number" class="form-control" id="length_trans" placeholder="Введіть довжину">
+                            </div>
+
+                            <hr>
+
+                            <div class="btn-group btn-group-toggle chain-conv-section" data-toggle="buttons">
+                                <span class="label-title">Тип короба</span>
+                                <div>
+                                    <label class="btn btn-secondary active">
+                                        <input type="radio" name="box" checked> Розбірний
+                                    </label>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="box"> Зварний
+                                    </label>
+                                </div>
+                            </div>
+
+                            <hr>
+                            
+                                  <div class="form-check form-switch">
+                                      <input class="form-check-input radio_boonker" type="checkbox" id="flexSwitchCheckChecked_1" v-model="hasDistributor">
+                                      <label class="form-check-label" for="flexSwitchCheckChecked_1">Розподільний механізм</label>
+                                  </div>
+                                  <div class="form-group" v-if="hasDistributor">
+                                      <label for="distributorLength">Довжина розподільного механізму, м</label>
+                                      <input type="number" class="form-control" id="distributorLength" v-model="distributorLength" placeholder="Введіть довжину">
+                                  </div>
+                                  
+                                
+                                  <hr>
+                                  
+                                <div class="btn-group btn-group-toggle chain-conv-section" data-toggle="buttons">
+                                <span class="label-title">Тип редуктора</span>
+                                <div>
+                                    <label class="btn btn-secondary active">
+                                        <input type="radio" name="mr" checked> Neromotori
+                                    </label>
+                                    <label class="btn btn-secondary">
+                                        <input type="radio" name="mr"> IMAK
+                                      </label>
+                                    </div>
+                                  </div>
+                                </div>
+
+                                <label for="mr">Редуктор</label>
+                                <select class="form-control" id="mr">
+                                    <option value="Neromotori">Neromotori 1,5 кВт 75 габарит</option>
+                                    <option value="IMAK">IMAK 3 кВт 100 габарит</option>
+                                </select>
+
+                                <div class="btn-group btn-group-toggle chain-conv-section" data-toggle="buttons">
+                                  <span class="label-title">Тип покриття</span>
+                                  <div>
+                                      
+                                      <label class="btn btn-secondary active">
+                                        <input type="radio" name="coating" checked>Грунт
+                                      </label>
+                                      <label class="btn btn-secondary">
+                                          <input type="radio" name="coating">Емаль
+                                      </label>
+                                      <label class="btn btn-secondary">
+                                          <input type="radio" name="coating">Порошкове фарбування
+                                      </label>
+                                      <label class="btn btn-secondary">
+                                        <input type="radio" name="coating">Оцинкований
+                                    </label>
+                                  </div>
+                              </div>
+                              
+  
+
+                              </div>
+                    </div>
+                </div>
+              </div>
+        </div>
+    </div>

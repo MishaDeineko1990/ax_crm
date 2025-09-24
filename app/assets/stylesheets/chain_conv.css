@@ -1,0 +1,55 @@
+.chain-conv-container {
+    padding: 20px;
+}
+
+.chain-conv-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.chain-conv-section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.chain-conv-options {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.chain-conv-radio-group {
+    margin: 10px 0;
+}
+
+.chain-conv-input-group {
+    margin: 10px 0;
+}
+
+.chain-conv-input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.chain-conv-input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.chain-conv-button {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.chain-conv-button:hover {
+    background-color: #0056b3;
+}
