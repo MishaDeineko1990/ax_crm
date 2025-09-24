@@ -1,10 +1,13 @@
 
-<div class="container chain-conv-container" id="distributorApp">
+    <div class="container chain-conv-container" id="distributorApp">
+    <%= stylesheet_link_tag 'chain_conv' %>
+    <%= javascript_include_tag 'chain_conv' %>
+        <div class="card">
             <div class="card-header">
                 Транспортер шкребковий
               </div>
               <div class="card-body chain-conv-form">
-              <div class="card-body">
+                <div class="row">
                     <div class="col-sm">
                         <div class="card mb-3" style="max-width: 70%;">
                           <img class="card-img-top" :src="currentImage" alt="Card image cap" style="width: 100%; height: auto;">
@@ -31,7 +34,7 @@
                             <hr>
 
                             <div class="btn-group btn-group-toggle chain-conv-section" data-toggle="buttons">
-                            <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <span class="label-title">Тип короба</span>
                                 <div>
                                     <label class="btn btn-secondary active">
                                         <input type="radio" name="box" checked> Розбірний
@@ -57,7 +60,7 @@
                                   <hr>
                                   
                                 <div class="btn-group btn-group-toggle chain-conv-section" data-toggle="buttons">
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                <span class="label-title">Тип редуктора</span>
                                 <div>
                                     <label class="btn btn-secondary active">
                                         <input type="radio" name="mr" checked> Neromotori
@@ -76,7 +79,7 @@
                                 </select>
 
                                 <div class="btn-group btn-group-toggle chain-conv-section" data-toggle="buttons">
-                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                  <span class="label-title">Тип покриття</span>
                                   <div>
                                       
                                       <label class="btn btn-secondary active">
