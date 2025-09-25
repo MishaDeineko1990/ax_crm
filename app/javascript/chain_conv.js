@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
             selectedTransType(newValue) {
                 console.log('Вибрано тип транспортера:', newValue);
                 alert('Вибрано тип транспортера: ТШ ' + newValue);
+                alert(' перевірка змінної Вибрано тип транспортера: ТШ ' + this.selectedTransType);
             }
         },
         mounted() {
