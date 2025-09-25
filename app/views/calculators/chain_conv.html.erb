@@ -17,7 +17,7 @@
         <div class="col-sm">
           <div class="form-group">
             <label for="params_trans">Продуктивність транспортера</label>
-            <select class="form-control" id="params_trans">
+            <select class="form-control" id="params_trans" v-model="selectedTransType">
               <option value="25">ТШ 25</option>
               <option value="50">ТШ 50</option>
               <option value="100">ТШ 100</option>
@@ -26,7 +26,7 @@
 
             <div class="form-group">
               <label for="length_trans">Довжина транспортера, м</label>
-              <input type="number" class="form-control" id="length_trans" placeholder="Введіть довжину">
+              <input type="number" class="form-control" id="length_trans" placeholder="Введіть довжину" min="0" max="100" v-model="lengthTrans">
             </div>
 
             <hr>
@@ -52,7 +52,7 @@
 
             <div class="form-group" v-if="hasDistributor">
               <label for="distributorLength">Довжина розподільного механізму, м</label>
-              <input type="number" class="form-control" id="distributorLength" v-model="distributorLength" placeholder="Введіть довжину">
+              <input type="number" class="form-control" id="distributorLength" v-model="distributorLength" placeholder="Введіть довжину" min="0" :max="lengthTrans > 2 ? lengthTrans - 2 : 0">
             </div>
 
             <div class="form-check">
