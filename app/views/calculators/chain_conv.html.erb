@@ -49,9 +49,15 @@
               <input class="form-check-input" type="checkbox" v-model="hasDistributor" id="hasDistributor">
               <label class="form-check-label" for="hasDistributor">Розподільний механізм</label>
             </div>
+
             <div class="form-group" v-if="hasDistributor">
               <label for="distributorLength">Довжина розподільного механізму, м</label>
               <input type="number" class="form-control" id="distributorLength" v-model="distributorLength" placeholder="Введіть довжину">
+            </div>
+
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="hasDistributor_futer">
+              <label class="form-check-label" for="hasDistributor">Футерування</label>
             </div>
 
             <hr>
