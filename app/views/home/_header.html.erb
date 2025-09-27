@@ -1,97 +1,98 @@
 <%= stylesheet_link_tag 'header', media: 'all' %>
 
 <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav_top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" id="nav_top">
+    <%= link_to "AxCRM", root_path, class:"navbar-brand" %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <%= current_user.name %>
+        <% end %>            
 
-        
-          <%= link_to "AxCRM", root_path, class:"navbar-brand" %>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-
-              <% if user_signed_in? %>
-                <%= current_user.name %>
-              <% end %>            
-
-<button class="btn btn-dark"> 
+        <button class="btn btn-dark"> 
           <i class="material-icons">whatshot</i>
-</button>
+        </button>
 
-<li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="material-icons">hdr_strong</i>
-  </a>
-  <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
-    <%= link_to perssons_path, class: "nav-link" do %>
-      <i class="material-icons">perm_identity</i>
-    <% end %>
-
-    <%= link_to organizations_path, class: "nav-link" do %>
-      <i class="material-icons">assured_workload</i>
-    <% end %>
-  </div>
-</li>
-    
-
-<li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    <i class="material-icons">calculate</i>
-  </a>
-  <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
-    <ul class="list-unstyled">
-      <li><%= link_to "Шнек", calculators_screw_path, class: "custom-link" %></li>
-      <li><%= link_to "Спіраль та сегменти", calculators_screw_spiral_path, class: "custom-link" %></li>
-      <li><%= link_to "Шнековий транспортер", calculators_screw_transp_path, class: "custom-link" %></li>
-      <li><%= link_to "Норія", calculators_noria_path, class: "custom-link" %></li>
-      <li><%= link_to "Стрічковий транспортер", calculators_belt_conw_path, class: "custom-link" %></li>
-      <li><%= link_to "Ланцюговий транспортер", calculators_chain_conv_path, class: "custom-link" %></li>
-      <li><%= link_to "Силос", calculators_silo_path, class: "custom-link" %></li>
-    </ul>
-  </div>
-</li>
-
-
-
-              <% if user_signed_in? %>
-
-                <li class="nav-item">
-                  <%= link_to "Edit profile", edit_user_registration_path, class:"nav-link" %>
-                </li>
-
-                <li class="nav-item">
-                  <%= link_to "Sign Out", destroy_user_session_path, Method: :Delete, class: "nav-link", data: { turbo: false } %>
-                </li>
-
-              <% else %>
-
-                <li class="nav-item">
-                  <%= link_to "Sign Up", new_user_registration_path, class:"nav-link" %>
-                </li>
-
-                <li class="nav-item">
-                  <%= link_to "Sign In", new_user_session_path, class:"nav-link" %>
-                </li>
-
+        <% if user_signed_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="material-icons">hdr_strong</i>
+            </a>
+            <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+              <%= link_to perssons_path, class: "nav-link" do %>
+                <i class="material-icons">perm_identity</i>
               <% end %>
-            
 
-            </ul>
+              <%= link_to organizations_path, class: "nav-link" do %>
+                <i class="material-icons">assured_workload</i>
+              <% end %>
+            </div>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="material-icons">calculate</i>
+            </a>
+            <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+              <ul class="list-unstyled">
+                <li><%= link_to "Шнек", calculators_screw_path, class: "custom-link" %></li>
+                <li><%= link_to "Спіраль та сегменти", calculators_screw_spiral_path, class: "custom-link" %></li>
+                <li><%= link_to "Шнековий транспортер", calculators_screw_transp_path, class: "custom-link" %></li>
+                <li><%= link_to "Норія", calculators_noria_path, class: "custom-link" %></li>
+                <li><%= link_to "Стрічковий транспортер", calculators_belt_conw_path, class: "custom-link" %></li>
+                <li><%= link_to "Ланцюговий транспортер", calculators_chain_conv_path, class: "custom-link" %></li>
+                <li><%= link_to "Силос", calculators_silo_path, class: "custom-link" %></li>
+              </ul>
+            </div>
+          </li>
+        <% end %>  
+
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Edit profile", edit_user_registration_path, class:"nav-link" %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "Sign Out", destroy_user_session_path, Method: :Delete, class: "nav-link", data: { turbo: false } %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Sign Up", new_user_registration_path, class:"nav-link" %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to "Sign In", new_user_session_path, class:"nav-link" %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
+    <button id="toggleButton_right_menu_1" class="toggle-button">
+      <i class="material-icons">arrow_left</i>
+    </button>
+  </nav>
+
+  <!-- Блок вспливаючий 1 -->
+    <div class="popup-header">
+      <h4>Форма введення даних</h4>
+      <button id="closeButton_right_menu_1" class="close-button">Закрити</button>
+    </div>
+    <div class="popup-content">
+      <form id="dataEntryForm">
+        <% (1..30).each do |i| %>
+          <div class="form-group">
+            <label for="field<%= i %>">Поле <%= i %></label>
+            <input type="text" class="form-control" id="field<%= i %>" placeholder="Введіть значення для поля <%= i %>">
           </div>
-
-          <button id="toggleButton_right_menu_1" class="toggle-button">
-            <i class="material-icons">arrow_left</i>
-          </button>
-
-        </nav>
-
-        <!-- Блок вспливаючий 1 -->
-        <div id="popup_right_menu_1" class="popup_right_menu_1 hidden_right_menu_1">
-          <p>Це вспливаючий блок!</p>
-          <button id="closeButton_right_menu_1">Закрити</button>
-        </div>
-   
-        <%= javascript_include_tag 'home/header', defer: true %>
+        <% end %>
+        <button type="submit" class="btn btn-primary mt-3">Відправити</button>
+      </form>
+    </div>
+  </div>
+ 
+  <%= javascript_include_tag 'home/header', defer: true %>
 
       </header>

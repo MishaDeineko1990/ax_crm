@@ -9,17 +9,19 @@ body {
 
 .popup_right_menu_1 {
     position: fixed;
-    top: 60px; /* Відступ 100px з верху */
+    top: 60px; /* Відступ 60px з верху */
     right: 0; /* Приклеїти до правої сторони */
     transform: translate(0, 0); /* Не змінюємо положення по вертикалі */
     width: 90%; /* Ширина для десктопів */
     height: calc(100% - 100px); /* Висота 100% мінус відступ 100px з верху */
     background-color: #ffffffd9; /* Фон з прозорістю */
     border: 2px solid #ccc;
-    padding: 20px;
+    padding: 0; /* Прибираємо відступи, щоб контролювати їх у внутрішніх елементах */
     z-index: 994;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    overflow: auto; /* Додаємо прокрутку, якщо вміст перевищує висоту */
+    display: flex;
+    flex-direction: column; /* Організовуємо вміст вертикально */
+    overflow: hidden; /* Прибираємо прокрутку для всього блоку */
 }
 
 /* Медіа-запит для планшетів та телефонів */
@@ -70,6 +72,66 @@ body {
 
 .hidden_right_menu_1 {
     display: none; /* Сховати блок */
+}
+
+/* Стилі для заголовка спливаючого блоку */
+.popup-header {
+    padding: 15px 20px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0; /* Заголовок не стискається */
+}
+
+/* Стилі для вмісту спливаючого блоку з прокруткою */
+.popup-content {
+    padding: 20px;
+    overflow-y: auto; /* Додаємо вертикальну прокрутку лише для вмісту */
+    flex-grow: 1; /* Розтягуємо вміст на всю доступну висоту */
+    max-height: calc(100% - 60px); /* Максимальна висота з урахуванням заголовка */
+}
+
+/* Стилі для кнопки закриття */
+.close-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Стилі для форми */
+#dataEntryForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Стилі для групи полів форми */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Стилі для полів вводу */
+.form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+}
+
+/* Стилі для кнопки відправки форми */
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: flex-start;
 }
 
 /* links button calculator */
