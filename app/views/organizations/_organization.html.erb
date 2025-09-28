@@ -109,6 +109,33 @@
     border: 1px solid #63b3ed;
   }
   
+  .btn-outline-info {
+    color: #63b3ed;
+    border-color: #63b3ed;
+    background-color: transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-outline-info:hover {
+    color: #e2e8f0;
+    background-color: #63b3ed;
+    border-color: #63b3ed;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(99, 179, 237, 0.3);
+  }
+  
+  .btn-outline-info:focus {
+    box-shadow: 0 0 0 0.2rem rgba(99, 179, 237, 0.25);
+  }
+  
+  .btn-outline-info i {
+    transition: transform 0.3s ease;
+  }
+  
+  .btn-outline-info[aria-expanded="true"] i {
+    transform: rotate(180deg);
+  }
+  
   @media (max-width: 768px) {
     .org-field {
       flex-direction: column;
