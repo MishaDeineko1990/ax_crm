@@ -146,71 +146,14 @@
   </div>
 
   <div class="org-content">
-    <!-- Основна інформація -->
+    <!-- Основна інформація (завжди видима) -->
     <div class="org-section">
-      <h4 class="section-title">
-        📋 Основна інформація
-      </h4>
-      
       <div class="org-field">
         <span class="field-label">ЄДРПОУ:</span>
         <span class="field-value <%= 'empty' unless organization.ederpou.present? %>">
           <%= organization.ederpou.present? ? organization.ederpou : "Не вказано" %>
         </span>
       </div>
-      
-      <div class="org-field">
-        <span class="field-label">ІПН:</span>
-        <span class="field-value <%= 'empty' unless organization.ipn.present? %>">
-          <%= organization.ipn.present? ? organization.ipn : "Не вказано" %>
-        </span>
-      </div>
-      
-      <div class="org-field">
-        <span class="field-label">Тип оренди:</span>
-        <span class="field-value <%= 'empty' unless organization.type_rent.present? %>">
-          <% if organization.type_rent.present? %>
-            <span class="org-badge"><%= organization.type_rent %></span>
-          <% else %>
-            Не вказано
-          <% end %>
-        </span>
-      </div>
-    </div>
-
-    <!-- Адреси -->
-    <div class="org-section">
-      <h4 class="section-title">
-        📍 Адреси
-      </h4>
-      
-      <div class="org-field">
-        <span class="field-label">Фактична:</span>
-        <span class="field-value <%= 'empty' unless organization.factic_address.present? %>">
-          <%= organization.factic_address.present? ? organization.factic_address : "Не вказано" %>
-        </span>
-      </div>
-      
-      <div class="org-field">
-        <span class="field-label">Юридична:</span>
-        <span class="field-value <%= 'empty' unless organization.legal_address.present? %>">
-          <%= organization.legal_address.present? ? organization.legal_address : "Не вказано" %>
-        </span>
-      </div>
-      
-      <div class="org-field">
-        <span class="field-label">Поштова:</span>
-        <span class="field-value <%= 'empty' unless organization.send_adress.present? %>">
-          <%= organization.send_adress.present? ? organization.send_adress : "Не вказано" %>
-        </span>
-      </div>
-    </div>
-
-    <!-- Контактна інформація -->
-    <div class="org-section">
-      <h4 class="section-title">
-        📞 Контакти
-      </h4>
       
       <div class="org-field">
         <span class="field-label">Телефон:</span>
@@ -227,31 +170,94 @@
       </div>
     </div>
 
-    <!-- Банківські реквізити -->
-    <div class="org-section">
-      <h4 class="section-title">
-        🏦 Банківські реквізити
-      </h4>
-      
-      <div class="org-field">
-        <span class="field-label">Номер рахунку:</span>
-        <span class="field-value <%= 'empty' unless organization.number_count_bank.present? %>">
-          <%= organization.number_count_bank.present? ? organization.number_count_bank : "Не вказано" %>
-        </span>
+    <!-- Кнопка для розкриття додаткової інформації -->
+    <div class="text-center mb-3">
+      <button class="btn btn-outline-info btn-sm" type="button" data-toggle="collapse" data-target="#details-<%= organization.id %>" aria-expanded="false" aria-controls="details-<%= organization.id %>">
+        <i class="fas fa-chevron-down"></i> Детальна інформація
+      </button>
+    </div>
+
+    <!-- Додаткова інформація (розкривається) -->
+    <div class="collapse" id="details-<%= organization.id %>">
+      <!-- Додаткова основна інформація -->
+      <div class="org-section">
+        <h4 class="section-title">
+          📋 Додаткова інформація
+        </h4>
+        
+        <div class="org-field">
+          <span class="field-label">ІПН:</span>
+          <span class="field-value <%= 'empty' unless organization.ipn.present? %>">
+            <%= organization.ipn.present? ? organization.ipn : "Не вказано" %>
+          </span>
+        </div>
+        
+        <div class="org-field">
+          <span class="field-label">Тип оподаткування:</span>
+          <span class="field-value <%= 'empty' unless organization.type_rent.present? %>">
+            <% if organization.type_rent.present? %>
+              <span class="org-badge"><%= organization.type_rent %></span>
+            <% else %>
+              Не вказано
+            <% end %>
+          </span>
+        </div>
       </div>
-      
-      <div class="org-field">
-        <span class="field-label">МФО:</span>
-        <span class="field-value <%= 'empty' unless organization.mfo.present? %>">
-          <%= organization.mfo.present? ? organization.mfo : "Не вказано" %>
-        </span>
+
+      <!-- Адреси -->
+      <div class="org-section">
+        <h4 class="section-title">
+          📍 Адреси
+        </h4>
+        
+        <div class="org-field">
+          <span class="field-label">Фактична:</span>
+          <span class="field-value <%= 'empty' unless organization.factic_address.present? %>">
+            <%= organization.factic_address.present? ? organization.factic_address : "Не вказано" %>
+          </span>
+        </div>
+        
+        <div class="org-field">
+          <span class="field-label">Юридична:</span>
+          <span class="field-value <%= 'empty' unless organization.legal_address.present? %>">
+            <%= organization.legal_address.present? ? organization.legal_address : "Не вказано" %>
+          </span>
+        </div>
+        
+        <div class="org-field">
+          <span class="field-label">Адреса доставки:</span>
+          <span class="field-value <%= 'empty' unless organization.send_adress.present? %>">
+            <%= organization.send_adress.present? ? organization.send_adress : "Не вказано" %>
+          </span>
+        </div>
       </div>
-      
-      <div class="org-field">
-        <span class="field-label">Банк:</span>
-        <span class="field-value <%= 'empty' unless organization.name_and_requisites_bank.present? %>">
-          <%= organization.name_and_requisites_bank.present? ? organization.name_and_requisites_bank : "Не вказано" %>
-        </span>
+
+      <!-- Банківські реквізити -->
+      <div class="org-section">
+        <h4 class="section-title">
+          🏦 Банківські реквізити
+        </h4>
+        
+        <div class="org-field">
+          <span class="field-label">Номер рахунку:</span>
+          <span class="field-value <%= 'empty' unless organization.number_count_bank.present? %>">
+            <%= organization.number_count_bank.present? ? organization.number_count_bank : "Не вказано" %>
+          </span>
+        </div>
+        
+        <div class="org-field">
+          <span class="field-label">МФО:</span>
+          <span class="field-value <%= 'empty' unless organization.mfo.present? %>">
+            <%= organization.mfo.present? ? organization.mfo : "Не вказано" %>
+          </span>
+        </div>
+        
+        <div class="org-field">
+          <span class="field-label">Банк:</span>
+          <span class="field-value <%= 'empty' unless organization.name_and_requisites_bank.present? %>">
+            <%= organization.name_and_requisites_bank.present? ? organization.name_and_requisites_bank : "Не вказано" %>
+          </span>
+        </div>
       </div>
     </div>
   </div>
