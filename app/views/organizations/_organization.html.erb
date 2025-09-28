@@ -195,6 +195,14 @@
           <%= organization.mail.present? ? organization.mail : "Не вказано" %>
         </span>
       </div>
+     
+      <div class="org-field">
+        <span class="field-label">Адреса доставки:</span>
+        <span class="field-value <%= 'empty' unless organization.send_adress.present? %>">
+          <%= organization.send_adress.present? ? organization.send_adress : "Не вказано" %>
+        </span>
+      </div>
+    
     </div>
 
     <!-- Кнопка для розкриття додаткової інформації -->
@@ -250,13 +258,7 @@
             <%= organization.legal_address.present? ? organization.legal_address : "Не вказано" %>
           </span>
         </div>
-        
-        <div class="org-field">
-          <span class="field-label">Адреса доставки:</span>
-          <span class="field-value <%= 'empty' unless organization.send_adress.present? %>">
-            <%= organization.send_adress.present? ? organization.send_adress : "Не вказано" %>
-          </span>
-        </div>
+
       </div>
 
       <!-- Банківські реквізити -->
