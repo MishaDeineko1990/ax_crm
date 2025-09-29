@@ -2,6 +2,7 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 import "./home/header"
+import "./password_toggle"
 
 //= require rails-ujs
 

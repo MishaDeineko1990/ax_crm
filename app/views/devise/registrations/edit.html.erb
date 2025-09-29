@@ -14,7 +14,12 @@
 
   <div class="field">
     <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <div class="password-field-wrapper">
+      <%= f.password_field :password, autocomplete: "new-password" %>
+      <button type="button" class="password-toggle-btn" aria-label="Показати пароль" title="Показати пароль">
+        <span class="toggle-icon">👁️</span>
+      </button>
+    </div>
     <% if @minimum_password_length %>
       <br />
       <em><%= @minimum_password_length %> characters minimum</em>
@@ -23,12 +28,22 @@
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    <div class="password-field-wrapper">
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      <button type="button" class="password-toggle-btn" aria-label="Показати пароль" title="Показати пароль">
+        <span class="toggle-icon">👁️</span>
+      </button>
+    </div>
   </div>
 
   <div class="field">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
+    <div class="password-field-wrapper">
+      <%= f.password_field :current_password, autocomplete: "current-password" %>
+      <button type="button" class="password-toggle-btn" aria-label="Показати пароль" title="Показати пароль">
+        <span class="toggle-icon">👁️</span>
+      </button>
+    </div>
   </div>
   ```
   <div class="field">
