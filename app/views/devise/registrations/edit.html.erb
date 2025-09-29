@@ -68,7 +68,13 @@
               <% if organization.mail %>
                 <p class="card-text">Email: <%= organization.mail %></p>
               <% end %>
-              <%= link_to "Переглянути", organization, class: "btn btn-primary btn-sm" %>
+              <div class="d-flex justify-content-between">
+                <%= link_to "Переглянути", organization, class: "btn btn-primary btn-sm" %>
+                <%= link_to "Видалити", remove_organization_user_path(current_user, organization), 
+                            method: :delete, 
+                            class: "btn btn-danger btn-sm",
+                            confirm: "Ви впевнені, що хочете видалити цю організацію з вашого профілю?" %>
+              </div>
             </div>
           </div>
         </div>
@@ -77,6 +83,66 @@
   <% else %>
     <p class="text-muted">Ви не прив'язані до жодної організації</p>
   <% end %>
+
+  <% if @available_organizations&.any? %>
+    <div class="mt-3">
+      <h4>Додати існуючу організацію</h4>
+      <%= form_with url: add_organization_user_path(current_user), method: :post, local: true do |form| %>
+        <div class="d-flex">
+          <%= form.select :organization_id, 
+                          options_from_collection_for_select(@available_organizations, :id, :name), 
+                          { prompt: "Оберіть організацію" }, 
+                          { class: "form-select me-2" } %>
+          <%= form.submit "Додати", class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-muted mt-3">Всі доступні організації вже додані до вашого профілю</p>
+  <% end %>
+
+  <div class="mt-4">
+    <h4>Створити нову організацію</h4>
+    <%= form_with url: create_and_add_organization_user_path(current_user), method: :post, local: true do |form| %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <%= form.label :name, "Назва організації", class: "form-label" %>
+            <%= form.text_field :name, class: "form-control", required: true %>
+          </div>
+          <div class="mb-3">
+            <%= form.label :short_name, "Скорочена назва", class: "form-label" %>
+            <%= form.text_field :short_name, class: "form-control" %>
+          </div>
+          <div class="mb-3">
+            <%= form.label :ederpou, "ЄДРПОУ", class: "form-label" %>
+            <%= form.text_field :ederpou, class: "form-control" %>
+          </div>
+          <div class="mb-3">
+            <%= form.label :phone, "Телефон", class: "form-label" %>
+            <%= form.text_field :phone, class: "form-control" %>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <%= form.label :mail, "Email", class: "form-label" %>
+            <%= form.email_field :mail, class: "form-control" %>
+          </div>
+          <div class="mb-3">
+            <%= form.label :legal_address, "Юридична адреса", class: "form-label" %>
+            <%= form.text_area :legal_address, class: "form-control", rows: 2 %>
+          </div>
+          <div class="mb-3">
+            <%= form.label :factic_address, "Фактична адреса", class: "form-label" %>
+            <%= form.text_area :factic_address, class: "form-control", rows: 2 %>
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <%= form.submit "Створити та додати організацію", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
 </div>
 
 <h3>Cancel my account</h3>

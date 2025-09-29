@@ -16,6 +16,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   private
 
   def set_user_organizations
-    @user_organizations = current_user.oue_organizations if current_user
+    if current_user
+      @user_organizations = current_user.oue_organizations
+      @available_organizations = OueOrganization.where.not(id: current_user.oue_organization_ids)
+    end
   end
 end

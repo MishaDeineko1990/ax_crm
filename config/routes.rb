@@ -22,7 +22,13 @@ Rails.application.routes.draw do
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
-  resources :users, only: [:show]
+  resources :users, only: [:show] do
+    member do
+      post :add_organization
+      delete 'remove_organization/:organization_id', to: 'users#remove_organization', as: :remove_organization
+      post :create_and_add_organization
+    end
+  end
 
   devise_scope :user do  
      get '/users/sign_out' => 'devise/sessions#destroy'     
