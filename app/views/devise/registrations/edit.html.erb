@@ -46,6 +46,39 @@
   </div>
 <% end %>
 
+<div class="mt-4">
+  <h3>Мої організації</h3>
+  
+  <% if @user_organizations&.any? %>
+    <div class="row">
+      <% @user_organizations.each do |organization| %>
+        <div class="col-md-6 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= organization.name %></h5>
+              <% if organization.short_name %>
+                <p class="card-text">Скорочена назва: <%= organization.short_name %></p>
+              <% end %>
+              <% if organization.ederpou %>
+                <p class="card-text">ЄДРПОУ: <%= organization.ederpou %></p>
+              <% end %>
+              <% if organization.phone %>
+                <p class="card-text">Телефон: <%= organization.phone %></p>
+              <% end %>
+              <% if organization.mail %>
+                <p class="card-text">Email: <%= organization.mail %></p>
+              <% end %>
+              <%= link_to "Переглянути", organization, class: "btn btn-primary btn-sm" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-muted">Ви не прив'язані до жодної організації</p>
+  <% end %>
+</div>
+
 <h3>Cancel my account</h3>
 
 <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>

@@ -19,7 +19,9 @@ Rails.application.routes.draw do
   resources :goods
   resources :organizations
   
-  devise_for :users
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
+  }
   resources :users, only: [:show]
 
   devise_scope :user do  
