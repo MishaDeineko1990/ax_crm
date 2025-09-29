@@ -13,22 +13,12 @@
     <% if @minimum_password_length %>
     <em>(<%= @minimum_password_length %> characters minimum)</em>
     <% end %><br />
-    <div class="password-field-wrapper">
-      <%= f.password_field :password, autocomplete: "new-password" %>
-      <button type="button" class="password-toggle-btn" aria-label="Показати пароль" title="Показати пароль">
-        <span class="toggle-icon">👁️</span>
-      </button>
-    </div>
+    <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
   <div class="field">
     <%= f.label :password_confirmation %><br />
-    <div class="password-field-wrapper">
-      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      <button type="button" class="password-toggle-btn" aria-label="Показати пароль" title="Показати пароль">
-        <span class="toggle-icon">👁️</span>
-      </button>
-    </div>
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
   </div>
 
   <div class="field">

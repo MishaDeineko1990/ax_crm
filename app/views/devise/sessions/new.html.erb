@@ -8,12 +8,7 @@
 
   <div class="field">
     <%= f.label :password %><br />
-    <div class="password-field-wrapper">
-      <%= f.password_field :password, autocomplete: "current-password" %>
-      <button type="button" class="password-toggle-btn" aria-label="Показати пароль" title="Показати пароль">
-        <span class="toggle-icon">👁️</span>
-      </button>
-    </div>
+    <%= f.password_field :password, autocomplete: "current-password" %>
   </div>
 
   <% if devise_mapping.rememberable? %>
