@@ -1,0 +1,42 @@
+<h1>Профіль користувача</h1>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><%= @user.name || @user.email %></h5>
+    <p class="card-text">Email: <%= @user.email %></p>
+    <% if @user.name %>
+      <p class="card-text">Ім'я: <%= @user.name %></p>
+    <% end %>
+  </div>
+</div>
+
+<div class="mt-4">
+  <h3>Організації користувача</h3>
+  
+  <% if @oue_organizations.any? %>
+    <div class="row">
+      <% @oue_organizations.each do |organization| %>
+        <div class="col-md-6 mb-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= organization.name %></h5>
+              <% if organization.short_name %>
+                <p class="card-text">Скорочена назва: <%= organization.short_name %></p>
+              <% end %>
+              <% if organization.ederpou %>
+                <p class="card-text">ЄДРПОУ: <%= organization.ederpou %></p>
+              <% end %>
+              <%= link_to "Переглянути", organization, class: "btn btn-primary btn-sm" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p>Користувач не прив'язаний до жодної організації</p>
+  <% end %>
+</div>
+
+<div class="mt-4">
+  <%= link_to "Назад", :back, class: "btn btn-secondary" %>
+</div>

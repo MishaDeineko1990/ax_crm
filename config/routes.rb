@@ -10,11 +10,17 @@ Rails.application.routes.draw do
   resources :sales
   resources :tovars
   resources :sale_organizations
-  resources :oue_organizations
+  resources :oue_organizations do
+    member do
+      post :add_user
+      delete 'remove_user/:user_id', to: 'oue_organizations#remove_user', as: :remove_user
+    end
+  end
   resources :goods
   resources :organizations
   
   devise_for :users
+  resources :users, only: [:show]
 
   devise_scope :user do  
      get '/users/sign_out' => 'devise/sessions#destroy'     

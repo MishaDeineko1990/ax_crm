@@ -1,5 +1,5 @@
 class OueOrganizationsController < ApplicationController
-  before_action :set_oue_organization, only: %i[ show edit update destroy ]
+  before_action :set_oue_organization, only: %i[ show edit update destroy add_user remove_user ]
   before_action :authenticate_user!
 
   # GET /oue_organizations or /oue_organizations.json
@@ -9,6 +9,8 @@ class OueOrganizationsController < ApplicationController
 
   # GET /oue_organizations/1 or /oue_organizations/1.json
   def show
+    @users = @oue_organization.users
+    @available_users = User.where.not(id: @oue_organization.user_ids)
   end
 
   # GET /oue_organizations/new
@@ -54,6 +56,28 @@ class OueOrganizationsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to oue_organizations_url, notice: "Oue organization was successfully destroyed." }
+      format.json { head :no_content }
+    end
+  end
+
+  # POST /oue_organizations/1/add_user
+  def add_user
+    user = User.find(params[:user_id])
+    @oue_organization.users << user unless @oue_organization.users.include?(user)
+    
+    respond_to do |format|
+      format.html { redirect_to @oue_organization, notice: "Користувача успішно додано до організації." }
+      format.json { render :show, status: :ok, location: @oue_organization }
+    end
+  end
+
+  # DELETE /oue_organizations/1/remove_user/1
+  def remove_user
+    user = User.find(params[:user_id])
+    @oue_organization.users.delete(user)
+    
+    respond_to do |format|
+      format.html { redirect_to @oue_organization, notice: "Користувача успішно видалено з організації." }
       format.json { head :no_content }
     end
   end
