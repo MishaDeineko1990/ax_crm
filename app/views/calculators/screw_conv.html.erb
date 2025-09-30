@@ -1,2 +1,486 @@
-<h1>Calculators#screw_conv</h1>
-<p>Find me in app/views/calculators/screw_conv.html.erb</p>
+<%# 
+  Калькулятор гвинтового конвеєра
+  Цей файл містить HTML розмітку, CSS стилі та JavaScript код для розрахунку параметрів гвинтового конвеєра
+  Автоматично оновлює дані при зміні полів вводу та показує всі змінні через алерт
+%>
+
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-center mb-4 text-primary">
+        <i class="fas fa-cogs me-2"></i>
+        Калькулятор гвинтового конвеєра
+      </h1>
+      <p class="text-center text-muted mb-5">
+        Розрахунок параметрів та характеристик гвинтового конвеєра
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Ліва панель з параметрами -->
+    <div class="col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">
+            <i class="fas fa-sliders-h me-2"></i>
+            Параметри конвеєра
+          </h5>
+        </div>
+        <div class="card-body">
+          <!-- Тип підстави -->
+          <div class="mb-4">
+            <label for="pidstava-type" class="form-label fw-bold">
+              <i class="fas fa-foundation me-2"></i>
+              Тип підстави:
+            </label>
+            <select id="pidstava-type" class="form-select form-select-lg">
+              <option value="standard">Стандартна</option>
+              <option value="pidstava">Підстава</option>
+              <option value="zholob">Жолоб</option>
+            </select>
+          </div>
+
+          <!-- Основні параметри -->
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="diametr-shnek" class="form-label">
+                  <i class="fas fa-circle me-2"></i>
+                  Діаметр шнека (мм):
+                </label>
+                <input type="number" id="diametr-shnek" class="form-control" value="200" min="50" max="1000" step="10">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="dovzhyna-konveyer" class="form-label">
+                  <i class="fas fa-ruler-horizontal me-2"></i>
+                  Довжина конвеєра (м):
+                </label>
+                <input type="number" id="dovzhyna-konveyer" class="form-control" value="5" min="1" max="50" step="0.5">
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="krok-shnek" class="form-label">
+                  <i class="fas fa-arrows-alt-h me-2"></i>
+                  Крок шнека (мм):
+                </label>
+                <input type="number" id="krok-shnek" class="form-control" value="200" min="50" max="500" step="10">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="mb-3">
+                <label for="shvydkist-obertannya" class="form-label">
+                  <i class="fas fa-tachometer-alt me-2"></i>
+                  Швидкість обертання (об/хв):
+                </label>
+                <input type="number" id="shvydkist-obertannya" class="form-control" value="60" min="10" max="300" step="5">
+              </div>
+            </div>
+          </div>
+
+          <!-- Характеристики матеріалу -->
+          <div class="mb-4">
+            <h6 class="text-secondary border-bottom pb-2">
+              <i class="fas fa-cubes me-2"></i>
+              Характеристики матеріалу
+            </h6>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="gustyna-material" class="form-label">
+                    Густина матеріалу (кг/м³):
+                  </label>
+                  <input type="number" id="gustyna-material" class="form-control" value="800" min="100" max="3000" step="50">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="mb-3">
+                  <label for="koefitsient-zapovnennya" class="form-label">
+                    Коефіцієнт заповнення:
+                  </label>
+                  <input type="number" id="koefitsient-zapovnennya" class="form-control" value="0.3" min="0.1" max="0.8" step="0.05">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Кнопка розрахунку -->
+          <div class="text-center">
+            <button id="btn-rozrahunok" class="btn btn-success btn-lg px-5">
+              <i class="fas fa-calculator me-2"></i>
+              Розрахувати
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Права панель з результатами та зображенням -->
+    <div class="col-lg-6">
+      <!-- Зображення конвеєра -->
+      <div class="card shadow-sm mb-4">
+        <div class="card-header bg-info text-white">
+          <h5 class="mb-0">
+            <i class="fas fa-image me-2"></i>
+            Схема конвеєра
+          </h5>
+        </div>
+        <div class="card-body text-center">
+          <img id="konveyer-image" 
+               src="<%= asset_path('screw/sht_trans_1.jpg') %>" 
+               alt="Схема гвинтового конвеєра" 
+               class="img-fluid rounded shadow-sm"
+               style="max-height: 300px;">
+        </div>
+      </div>
+
+      <!-- Результати розрахунків -->
+      <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+          <h5 class="mb-0">
+            <i class="fas fa-chart-line me-2"></i>
+            Результати розрахунків
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="result-item mb-3 p-3 bg-light rounded">
+                <strong>Продуктивність:</strong>
+                <span id="produktyvnist" class="text-primary fs-5">0</span> т/год
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="result-item mb-3 p-3 bg-light rounded">
+                <strong>Об'єм транспортування:</strong>
+                <span id="obyem-transportuvannya" class="text-primary fs-5">0</span> м³/год
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="result-item mb-3 p-3 bg-light rounded">
+                <strong>Потужність двигуна:</strong>
+                <span id="potuzhnist-dvyguna" class="text-primary fs-5">0</span> кВт
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="result-item mb-3 p-3 bg-light rounded">
+                <strong>Крутний момент:</strong>
+                <span id="krutnyy-moment" class="text-primary fs-5">0</span> Н·м
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+/* CSS стилі для калькулятора гвинтового конвеєра */
+.container-fluid {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+}
+
+.card {
+  border: none;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+}
+
+.card-header {
+  border-radius: 15px 15px 0 0 !important;
+  border: none;
+}
+
+.form-control, .form-select {
+  border-radius: 10px;
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+  transform: scale(1.02);
+}
+
+.btn {
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.result-item {
+  border-left: 4px solid #28a745;
+  transition: all 0.3s ease;
+}
+
+.result-item:hover {
+  background-color: #e8f5e8 !important;
+  transform: translateX(5px);
+}
+
+.text-primary {
+  color: #007bff !important;
+}
+
+.bg-primary {
+  background: linear-gradient(45deg, #007bff, #0056b3) !important;
+}
+
+.bg-success {
+  background: linear-gradient(45deg, #28a745, #1e7e34) !important;
+}
+
+.bg-info {
+  background: linear-gradient(45deg, #17a2b8, #117a8b) !important;
+}
+
+#konveyer-image {
+  transition: all 0.3s ease;
+  border: 3px solid #dee2e6;
+}
+
+#konveyer-image:hover {
+  transform: scale(1.05);
+  border-color: #007bff;
+}
+
+.form-label {
+  color: #495057;
+  font-weight: 500;
+}
+
+.border-bottom {
+  border-bottom: 2px solid #dee2e6 !important;
+}
+
+/* Анімація для результатів */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-updated {
+  animation: fadeInUp 0.5s ease;
+}
+</style>
+
+<script>
+// JavaScript код для калькулятора гвинтового конвеєра
+// Всі змінні автоматично оновлюються при зміні полів вводу
+
+// Об'єкт для зберігання всіх змінних калькулятора
+const konveyerData = {
+  // Основні параметри
+  pidstavaType: 'standard',
+  diametrShnek: 200,
+  dovzhynaKonveyer: 5,
+  krokShnek: 200,
+  shvydkistObertannya: 60,
+  
+  // Характеристики матеріалу
+  gustynaMaterial: 800,
+  koefitsientZapovnennya: 0.3,
+  
+  // Розраховані значення
+  produktyvnist: 0,
+  obyemTransportuvannya: 0,
+  potuzhnistDvyguna: 0,
+  krutnyyMoment: 0
+};
+
+// Функція для оновлення зображення залежно від типу підстави
+function onovytyZobrazhennya() {
+  const imageElement = document.getElementById('konveyer-image');
+  const pidstavaType = konveyerData.pidstavaType;
+  
+  let imagePath;
+  switch(pidstavaType) {
+    case 'pidstava':
+      imagePath = '<%= asset_path("screw/sht_trans_2.jpg") %>';
+      break;
+    case 'zholob':
+      imagePath = '<%= asset_path("screw/sht_trans_3.jpg") %>';
+      break;
+    default:
+      imagePath = '<%= asset_path("screw/sht_trans_1.jpg") %>';
+  }
+  
+  imageElement.src = imagePath;
+  imageElement.style.opacity = '0';
+  setTimeout(() => {
+    imageElement.style.opacity = '1';
+  }, 100);
+}
+
+// Функція для розрахунку всіх параметрів
+function rozrahuvaty() {
+  const D = konveyerData.diametrShnek / 1000; // переводимо в метри
+  const L = konveyerData.dovzhynaKonveyer;
+  const S = konveyerData.krokShnek / 1000; // переводимо в метри
+  const n = konveyerData.shvydkistObertannya;
+  const rho = konveyerData.gustynaMaterial;
+  const psi = konveyerData.koefitsientZapovnennya;
+  
+  // Розрахунок об'єму транспортування (м³/год)
+  const F = Math.PI * Math.pow(D, 2) / 4; // площа перерізу
+  konveyerData.obyemTransportuvannya = F * S * n * psi * 60;
+  
+  // Розрахунок продуктивності (т/год)
+  konveyerData.produktyvnist = konveyerData.obyemTransportuvannya * rho / 1000;
+  
+  // Розрахунок потужності двигуна (кВт) - спрощена формула
+  const k_opr = 1.2; // коефіцієнт опору
+  konveyerData.potuzhnistDvyguna = (konveyerData.produktyvnist * L * k_opr) / 3.6;
+  
+  // Розрахунок крутного моменту (Н·м)
+  konveyerData.krutnyyMoment = (konveyerData.potuzhnistDvyguna * 1000 * 60) / (2 * Math.PI * n);
+  
+  // Оновлення відображення результатів
+  onovytyRezultaty();
+}
+
+// Функція для оновлення відображення результатів
+function onovytyRezultaty() {
+  document.getElementById('produktyvnist').textContent = konveyerData.produktyvnist.toFixed(2);
+  document.getElementById('obyem-transportuvannya').textContent = konveyerData.obyemTransportuvannya.toFixed(2);
+  document.getElementById('potuzhnist-dvyguna').textContent = konveyerData.potuzhnistDvyguna.toFixed(2);
+  document.getElementById('krutnyy-moment').textContent = konveyerData.krutnyyMoment.toFixed(2);
+  
+  // Додаємо анімацію до результатів
+  document.querySelectorAll('.result-item').forEach(item => {
+    item.classList.add('result-updated');
+    setTimeout(() => item.classList.remove('result-updated'), 500);
+  });
+}
+
+// Функція для показу всіх змінних через алерт
+function pokazatyVsiZminni() {
+  const alertMessage = `
+🔧 ПАРАМЕТРИ ГВИНТОВОГО КОНВЕЄРА 🔧
+
+📋 Основні параметри:
+• Тип підстави: ${konveyerData.pidstavaType}
+• Діаметр шнека: ${konveyerData.diametrShnek} мм
+• Довжина конвеєра: ${konveyerData.dovzhynaKonveyer} м
+• Крок шнека: ${konveyerData.krokShnek} мм
+• Швидкість обертання: ${konveyerData.shvydkistObertannya} об/хв
+
+🧱 Характеристики матеріалу:
+• Густина матеріалу: ${konveyerData.gustynaMaterial} кг/м³
+• Коефіцієнт заповнення: ${konveyerData.koefitsientZapovnennya}
+
+📊 Розраховані результати:
+• Продуктивність: ${konveyerData.produktyvnist.toFixed(2)} т/год
+• Об'єм транспортування: ${konveyerData.obyemTransportuvannya.toFixed(2)} м³/год
+• Потужність двигуна: ${konveyerData.potuzhnistDvyguna.toFixed(2)} кВт
+• Крутний момент: ${konveyerData.krutnyyMoment.toFixed(2)} Н·м
+  `;
+  
+  alert(alertMessage);
+}
+
+// Функція для оновлення змінної та автоматичного перерахунку
+function onovytyZminnu(nazvaZminnoyi, znachennya) {
+  konveyerData[nazvaZminnoyi] = znachennya;
+  rozrahuvaty();
+  pokazatyVsiZminni();
+}
+
+// Ініціалізація при завантаженні сторінки
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('🚀 Калькулятор гвинтового конвеєра ініціалізовано');
+  
+  // Додаємо обробники подій для всіх полів вводу
+  
+  // Тип підстави
+  document.getElementById('pidstava-type').addEventListener('change', function() {
+    onovytyZminnu('pidstavaType', this.value);
+    onovytyZobrazhennya();
+  });
+  
+  // Діаметр шнека
+  document.getElementById('diametr-shnek').addEventListener('input', function() {
+    onovytyZminnu('diametrShnek', parseFloat(this.value) || 0);
+  });
+  
+  // Довжина конвеєра
+  document.getElementById('dovzhyna-konveyer').addEventListener('input', function() {
+    onovytyZminnu('dovzhynaKonveyer', parseFloat(this.value) || 0);
+  });
+  
+  // Крок шнека
+  document.getElementById('krok-shnek').addEventListener('input', function() {
+    onovytyZminnu('krokShnek', parseFloat(this.value) || 0);
+  });
+  
+  // Швидкість обертання
+  document.getElementById('shvydkist-obertannya').addEventListener('input', function() {
+    onovytyZminnu('shvydkistObertannya', parseFloat(this.value) || 0);
+  });
+  
+  // Густина матеріалу
+  document.getElementById('gustyna-material').addEventListener('input', function() {
+    onovytyZminnu('gustynaMaterial', parseFloat(this.value) || 0);
+  });
+  
+  // Коефіцієнт заповнення
+  document.getElementById('koefitsient-zapovnennya').addEventListener('input', function() {
+    onovytyZminnu('koefitsientZapovnennya', parseFloat(this.value) || 0);
+  });
+  
+  // Кнопка розрахунку
+  document.getElementById('btn-rozrahunok').addEventListener('click', function() {
+    rozrahuvaty();
+    pokazatyVsiZminni();
+  });
+  
+  // Початковий розрахунок
+  rozrahuvaty();
+  
+  console.log('✅ Всі обробники подій додано успішно');
+});
+
+// Додаткові функції для покращення UX
+document.addEventListener('DOMContentLoaded', function() {
+  // Додаємо підказки для полів
+  const tooltips = {
+    'diametr-shnek': 'Внутрішній діаметр шнека в міліметрах',
+    'dovzhyna-konveyer': 'Загальна довжина конвеєра в метрах',
+    'krok-shnek': 'Відстань між витками шнека в міліметрах',
+    'shvydkist-obertannya': 'Кількість обертів шнека за хвилину',
+    'gustyna-material': 'Насипна густина транспортованого матеріалу',
+    'koefitsient-zapovnennya': 'Ступінь заповнення жолоба матеріалом (0.1-0.8)'
+  };
+  
+  Object.keys(tooltips).forEach(id => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.title = tooltips[id];
+    }
+  });
+});
+</script>
