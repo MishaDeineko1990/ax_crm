@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   get 'calculators/screw'
   get 'calculators/screw_spiral'
-  get 'calculators/screw_transp'
+  get 'calculators/screw_conv'
   get 'calculators/noria'
   get 'calculators/belt_conw'
   get 'calculators/chain_conv'
