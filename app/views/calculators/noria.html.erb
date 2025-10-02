@@ -1,2 +1,371 @@
-<h1>Calculators#noria</h1>
-<p>Find me in app/views/calculators/noria.html.erb</p>
+<%# 
+  Калькулятор норії (bucket elevator)
+  Стилістика та структура подібна до screw_conv.html.erb
+  Додано поля: тип норії, висота норії, вибір мотор-редуктора
+%>
+
+<div class="container-fluid py-4">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-center mb-4 text-primary">
+        <i class="fas fa-cogs me-2"></i>
+        Калькулятор норії
+      </h1>
+      <p class="text-center text-muted mb-5">
+        Параметри, розрахунки та підбір мотор-редуктора для норії
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <!-- Ліва панель з параметрами -->
+    <div class="col-lg-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h5 class="mb-0">
+            <i class="fas fa-sliders-h me-2"></i>
+            Параметри норії
+          </h5>
+        </div>
+        <div class="card-body">
+          <!-- Тип норії -->
+          <div class="mb-4">
+            <label for="noria-type" class="form-label fw-bold">
+              <i class="fas fa-tags me-2"></i>
+              Тип норії:
+            </label>
+            <select id="noria-type" class="form-select form-select-lg">
+              <option value="НКЗ-10">НКЗ-10</option>
+              <option value="НКЗ-25" selected>НКЗ-25</option>
+              <option value="НКЗ-50">НКЗ-50</option>
+              <option value="НКЗ-100">НКЗ-100</option>
+              <option value="НКЗ-200">НКЗ-200</option>
+            </select>
+          </div>
+
+          <!-- Висота норії -->
+          <div class="mb-4">
+            <label for="noria-height" class="form-label fw-bold">
+              <i class="fas fa-ruler-vertical me-2"></i>
+              Висота норії (м):
+            </label>
+            <select id="noria-height" class="form-select">
+              <option value="5">5</option>
+              <option value="10" selected>10</option>
+              <option value="15">15</option>
+              <option value="20">20</option>
+              <option value="25">25</option>
+              <option value="30">30</option>
+            </select>
+          </div>
+
+          <!-- Мотор-редуктор -->
+          <div class="mb-4">
+            <label for="motor-reducer" class="form-label fw-bold">
+              <i class="fas fa-industry me-2"></i>
+              Мотор-редуктор (номінальна потужність, кВт):
+            </label>
+            <select id="motor-reducer" class="form-select">
+              <option value="1.5">1.5 кВт</option>
+              <option value="3" selected>3 кВт</option>
+              <option value="5.5">5.5 кВт</option>
+              <option value="7.5">7.5 кВт</option>
+              <option value="11">11 кВт</option>
+              <option value="15">15 кВт</option>
+            </select>
+          </div>
+
+          <!-- Кнопка розрахунку -->
+          <div class="text-center">
+            <button id="btn-rozrahunok" class="btn btn-success btn-lg px-5">
+              <i class="fas fa-calculator me-2"></i>
+              Розрахувати
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Права панель з результатами та зображенням -->
+    <div class="col-lg-6">
+      <!-- Зображення норії -->
+      <div class="card shadow-sm mb-4">
+        <div class="card-header bg-info text-white">
+          <h5 class="mb-0">
+            <i class="fas fa-image me-2"></i>
+            Схема норії
+          </h5>
+        </div>
+        <div class="card-body text-center">
+          <img id="noria-image" 
+               src="<%= asset_path('icon.png') %>" 
+               alt="Схема норії" 
+               class="img-fluid rounded shadow-sm"
+               style="max-height: 300px;">
+        </div>
+      </div>
+
+      <!-- Результати розрахунків -->
+      <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+          <h5 class="mb-0">
+            <i class="fas fa-chart-line me-2"></i>
+            Результати розрахунків
+          </h5>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col-12">
+              <div class="result-item mb-3 p-3 bg-light rounded">
+                <strong>Продуктивність норії:</strong>
+                <span id="produktyvnist" class="text-primary fs-5">0</span> т/год
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="result-item mb-3 p-3 bg-light rounded">
+                <strong>Необхідна потужність:</strong>
+                <span id="power-required" class="text-primary fs-5">0</span> кВт
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="result-item mb-3 p-3 bg-light rounded">
+                <strong>Адекватність вибору мотор-редуктора:</strong>
+                <span id="motor-adequacy" class="text-primary fs-5">—</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Поле для перегляду всіх параметрів -->
+  <div class="row mt-4">
+    <div class="col-12 text-center">
+      <button id="btn-show-all" class="btn btn-outline-primary">
+        <i class="fas fa-list me-2"></i>
+        Показати всі параметри
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+/* CSS стилі для калькулятора норії */
+.container-fluid {
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+}
+
+.card {
+  border: none;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15) !important;
+}
+
+.card-header {
+  border-radius: 15px 15px 0 0 !important;
+  border: none;
+}
+
+.form-control, .form-select {
+  border-radius: 10px;
+  border: 2px solid #e9ecef;
+  transition: all 0.3s ease;
+}
+
+.form-control:focus, .form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,0.25);
+  transform: scale(1.02);
+}
+
+.btn {
+  border-radius: 25px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.result-item {
+  border-left: 4px solid #28a745;
+  transition: all 0.3s ease;
+}
+
+.result-item:hover {
+  background-color: #e8f5e8 !important;
+  transform: translateX(5px);
+}
+
+.text-primary {
+  color: #007bff !important;
+}
+
+.bg-primary {
+  background: linear-gradient(45deg, #007bff, #0056b3) !important;
+}
+
+.bg-success {
+  background: linear-gradient(45deg, #28a745, #1e7e34) !important;
+}
+
+.bg-info {
+  background: linear-gradient(45deg, #17a2b8, #117a8b) !important;
+}
+
+#noria-image {
+  transition: all 0.3s ease;
+  border: 3px solid #dee2e6;
+}
+
+#noria-image:hover {
+  transform: scale(1.05);
+  border-color: #007bff;
+}
+
+.form-label {
+  color: #495057;
+  font-weight: 500;
+}
+
+.border-bottom {
+  border-bottom: 2px solid #dee2e6 !important;
+}
+
+/* Анімація для результатів */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.result-updated {
+  animation: fadeInUp 0.5s ease;
+}
+</style>
+
+<script>
+// Дані для калькулятора норії
+const noriaData = {
+  type: 'НКЗ-25',
+  height: 10,
+  motorReducerPower: 3,
+  produktyvnist: 0,
+  powerRequired: 0,
+  motorAdequacy: '—'
+};
+
+// Відповідність типу норії до продуктивності (т/год)
+const typeCapacityMap = {
+  'НКЗ-10': 10,
+  'НКЗ-25': 25,
+  'НКЗ-50': 50,
+  'НКЗ-100': 100,
+  'НКЗ-200': 200
+};
+
+// Оновлення зображення (за типом норії, поки використовуємо плейсхолдер)
+function onovytyZobrazhennya() {
+  const imageElement = document.getElementById('noria-image');
+  imageElement.style.opacity = '0';
+  setTimeout(() => { imageElement.style.opacity = '1'; }, 100);
+}
+
+// Розрахунок параметрів
+function rozrahuvaty() {
+  const q = typeCapacityMap[noriaData.type] || 0; // т/год
+  const H = Number(noriaData.height) || 0; // м
+  const k_loss = 1.5; // коефіцієнт на втрати, тертя, ККД
+
+  // Спрощена формула потужності: P ≈ (Q * H) / 367, кВт; множимо на k_loss
+  noriaData.produktyvnist = q;
+  noriaData.powerRequired = ((q * H) / 367) * k_loss;
+
+  // Адекватність вибору мотор-редуктора
+  noriaData.motorAdequacy = (noriaData.motorReducerPower >= noriaData.powerRequired)
+    ? 'Достатньо'
+    : 'Недостатньо';
+
+  onovytyRezultaty();
+}
+
+// Оновлення результатів на інтерфейсі
+function onovytyRezultaty() {
+  document.getElementById('produktyvnist').textContent = noriaData.produktyvnist.toFixed(0);
+  document.getElementById('power-required').textContent = noriaData.powerRequired.toFixed(2);
+  document.getElementById('motor-adequacy').textContent = noriaData.motorAdequacy;
+
+  document.querySelectorAll('.result-item').forEach(item => {
+    item.classList.add('result-updated');
+    setTimeout(() => item.classList.remove('result-updated'), 500);
+  });
+}
+
+// Показати всі параметри
+function pokazatyVsiZminni() {
+  const alertMessage = `
+🔧 ПАРАМЕТРИ НОРІЇ 🔧
+
+• Тип норії: ${noriaData.type}
+• Висота: ${noriaData.height} м
+• Мотор-редуктор: ${noriaData.motorReducerPower} кВт
+
+📊 Розраховані результати:
+• Продуктивність: ${noriaData.produktyvnist.toFixed(0)} т/год
+• Необхідна потужність: ${noriaData.powerRequired.toFixed(2)} кВт
+• Адекватність: ${noriaData.motorAdequacy}
+  `;
+  alert(alertMessage);
+}
+
+// Оновити одну змінну і перерахувати
+function onovytyZminnu(nazvaZminnoyi, znachennya) {
+  noriaData[nazvaZminnoyi] = znachennya;
+  rozrahuvaty();
+}
+
+// Ініціалізація
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('🚀 Калькулятор норії ініціалізовано');
+
+  // Обробники подій
+  document.getElementById('noria-type').addEventListener('change', function() {
+    onovytyZminnu('type', this.value);
+    onovytyZobrazhennya();
+  });
+
+  document.getElementById('noria-height').addEventListener('change', function() {
+    onovytyZminnu('height', parseFloat(this.value) || 0);
+  });
+
+  document.getElementById('motor-reducer').addEventListener('change', function() {
+    onovytyZminnu('motorReducerPower', parseFloat(this.value) || 0);
+  });
+
+  document.getElementById('btn-rozrahunok').addEventListener('click', function() {
+    rozrahuvaty();
+    pokazatyVsiZminni();
+  });
+
+  document.getElementById('btn-show-all').addEventListener('click', function() {
+    pokazatyVsiZminni();
+  });
+
+  // Початковий розрахунок
+  rozrahuvaty();
+  console.log('✅ Всі обробники подій додано успішно');
+});
+</script>
