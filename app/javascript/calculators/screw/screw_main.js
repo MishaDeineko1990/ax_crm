@@ -53,11 +53,8 @@
     Object.keys(selectors.forms).forEach(p => {
       const el = document.querySelector(selectors.forms[p]);
       if (!el) return;
-      if (p === part) {
-        el.classList.remove('d-none');
-      } else {
-        el.classList.add('d-none');
-      }
+      // Використовуємо атрибут hidden для сумісності без Bootstrap
+      el.hidden = (p !== part);
     });
     state.type = part;
     updateFromForm(part);
