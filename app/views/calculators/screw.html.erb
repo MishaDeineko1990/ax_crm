@@ -1,2 +1,89 @@
-<h1>Calculators#screw</h1>
-<p>Find me in app/views/calculators/screw.html.erb</p>
+
+<div class="container-fluid bg-dark text-light py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-8 col-lg-6">
+
+      <!-- Radio switch -->
+      <div class="btn-group btn-group-toggle w-100 mb-4" data-toggle="buttons">
+        <label class="btn btn-outline-light flex-fill active">
+          <input type="radio" name="screwType" value="segment" autocomplete="off" checked> Сегмент
+        </label>
+        <label class="btn btn-outline-light flex-fill">
+          <input type="radio" name="screwType" value="spiral" autocomplete="off"> Спіраль
+        </label>
+        <label class="btn btn-outline-light flex-fill">
+          <input type="radio" name="screwType" value="repair" autocomplete="off"> Ремонт шнека
+        </label>
+      </div>
+
+      <!-- Forms wrapper -->
+      <div id="screwForms">
+        <!-- Segment form -->
+        <div id="segmentForm" class="screw-form">
+          <h5 class="mb-3">Сегмент</h5>
+          <div class="form-group">
+            <label>D</label>
+            <input type="number" class="form-control form-control-sm bg-secondary text-light border-0" placeholder="D">
+          </div>
+          <div class="form-group">
+            <label>d</label>
+            <input type="number" class="form-control form-control-sm bg-secondary text-light border-0" placeholder="d">
+          </div>
+          <div class="form-group">
+            <label>P</label>
+            <input type="number" class="form-control form-control-sm bg-secondary text-light border-0" placeholder="P">
+          </div>
+          <div class="form-group">
+            <label>S</label>
+            <input type="number" class="form-control form-control-sm bg-secondary text-light border-0" placeholder="S">
+          </div>
+        </div>
+
+        <!-- Spiral form -->
+        <div id="spiralForm" class="screw-form d-none">
+          <h5 class="mb-3">Спіраль</h5>
+          <div class="form-group">
+            <label>D</label>
+            <input type="number" class="form-control form-control-sm bg-secondary text-light border-0" placeholder="D">
+          </div>
+          <div class="form-group">
+            <label>d</label>
+            <input type="number" class="form-control form-control-sm bg-secondary text-light border-0" placeholder="d">
+          </div>
+          <div class="form-group">
+            <label>P</label>
+            <input type="number" class="form-control form-control-sm bg-secondary text-light border-0" placeholder="P">
+          </div>
+          <div class="form-group">
+            <label>S</label>
+            <input type="number" class="form-control form-control-sm bg-secondary text-light border-0" placeholder="S">
+          </div>
+        </div>
+
+        <!-- Repair form -->
+        <div id="repairForm" class="screw-form d-none">
+          <h5 class="mb-3">Ремонт шнека</h5>
+          <div class="form-group">
+            <label>D</label>
+            <input type="number" class="form-control form-control-sm bg-secondary text-light border-0" placeholder="D">
+          </div>
+          <div class="form-group">
+            <label>d</label>
+            <input type="number" class="form-control form-control-sm bg-secondary text-light border-0" placeholder="d">
+          </div>
+          <div class="form-group">
+            <label>P</label>
+            <input type="number" class="form-control form-control-sm bg-secondary text-light border-0" placeholder="P">
+          </div>
+          <div class="form-group">
+            <label>S</label>
+            <input type="number" class="form-control form-control-sm bg-secondary text-light border-0" placeholder="S">
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<%= javascript_include_tag 'calculators/screw/screw_main.js', defer: true %>
