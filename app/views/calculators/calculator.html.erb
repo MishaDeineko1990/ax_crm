@@ -1,0 +1,57 @@
+<div class="container chain-conv-container">
+  <%= stylesheet_link_tag 'chain_conv' %>
+  <div class="card">
+    <div class="card-header">
+      Калькулятор шнека
+    </div>
+    <div class="card-body chain-conv-form">
+      <!-- Меню з перемикачами -->
+      <div class="btn-group btn-group-toggle w-100 mb-4" data-toggle="buttons">
+        <label class="btn btn-secondary active">
+          <input type="radio" name="screwType" value="segment" autocomplete="off" checked> Сегмент
+        </label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="screwType" value="spiral" autocomplete="off"> Спіраль
+        </label>
+        <label class="btn btn-secondary">
+          <input type="radio" name="screwType" value="repair" autocomplete="off"> Ремонт шнека
+        </label>
+      </div>
+
+      <!-- Обгортка з формами -->
+      <div id="screwForms">
+        <%= render 'calculators/screw_segment' %>
+        <%= render 'calculators/screw_spiral' %>
+        <%= render 'calculators/screw_repair' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// Перемикання між формами
+document.addEventListener('DOMContentLoaded', function() {
+  const radios = document.querySelectorAll('input[name="screwType"]');
+  const segment = document.getElementById('segmentForm');
+  const spiral = document.getElementById('spiralForm');
+  const repair = document.getElementById('repairForm');
+
+  function showForm(type) {
+    // Скидаємо стан
+    segment.classList.add('d-none');
+    spiral.classList.add('d-none');
+    repair.classList.add('d-none');
+
+    if (type === 'segment') segment.classList.remove('d-none');
+    if (type === 'spiral') spiral.classList.remove('d-none');
+    if (type === 'repair') repair.classList.remove('d-none');
+  }
+
+  radios.forEach(r => {
+    r.addEventListener('change', () => showForm(r.value));
+  });
+
+  // Початковий стан
+  showForm('segment');
+});
+</script>
