@@ -1,126 +1,104 @@
-// Логіка калькулятора шнека (сегмент / спіраль / ремонт)
-// - Зчитує значення з інпутів та оновлює змінні через методи
-// - Ховає форми, які не вибрані (radio)
-// - Організовано як модуль з методами для керування станом
+// jQuery-версія логіки калькулятора шнека (простішо для розуміння)
+// - Чітко: показує/ховає вибрані форми, читає інпути, оновлює стан
+// - Використовує .show() / .hide() та прості обробники подій
 
-(() => {
-  'use strict';
-
-  // Селектори для форм
-  const selectors = {
-    radioName: 'screwType',
-    forms: {
-      segment: '#segmentForm',
-      spiral: '#spiralForm',
-      repair: '#repairForm'
-    }
-  };
-
-  // Стан калькулятора (усі змінні в одному об'єкті)
-  const state = {
-    type: 'segment',
-    segment: { D: null, d: null, P: null, S: null },
-    spiral:  { D: null, d: null, P: null, S: null },
-    repair:  { D: null, d: null, P: null, S: null }
-  };
-
-  // Допоміжні функції
-  const parseNum = (v) => {
-    const n = parseFloat(v);
-    return Number.isFinite(n) ? n : null;
-  };
-
-  // Оновити одну змінну у стані
-  function updateField(part, key, value) {
-    if (!state[part]) return;
-    state[part][key] = value;
+(function ($) {
+  // Якщо jQuery не підключено — нічого не робимо, щоб уникнути помилок
+  if (!$) {
+    console.warn('ScrewCalc: потрібен jQuery для цієї простої реалізації');
+    return;
   }
 
-  // Прочитати всі інпути форми та оновити стан
-  function updateFromForm(part) {
-    const form = document.querySelector(selectors.forms[part]);
-    if (!form) return;
-    const inputs = form.querySelectorAll('.form-group input[type="number"]');
-    const keys = ['D', 'd', 'P', 'S'];
-    keys.forEach((key, idx) => {
-      const input = inputs[idx];
-      if (input) updateField(part, key, parseNum(input.value));
-    });
-  }
-
-  // Показати вибрану форму та приховати інші
-  function showForm(part) {
-    Object.keys(selectors.forms).forEach(p => {
-      const el = document.querySelector(selectors.forms[p]);
-      if (!el) return;
-      // Використовуємо атрибут hidden для сумісності без Bootstrap
-      el.hidden = (p !== part);
-    });
-    state.type = part;
-    updateFromForm(part);
-    updateRadioStyles(part);
-  }
-
-  // Візуально позначити активну кнопку у групі радіо
-  function updateRadioStyles(activeValue) {
-    const radios = document.querySelectorAll(`input[name="${selectors.radioName}"]`);
-    radios.forEach(radio => {
-      const label = radio.closest('label.btn');
-      if (!label) return;
-      if (radio.value === activeValue && radio.checked) {
-        label.classList.add('active');
-      } else {
-        label.classList.remove('active');
+  $(function () {
+    // Прості селектори та відповідність частин форм
+    var selectors = {
+      radioName: 'screwType',
+      forms: {
+        segment: '#segmentForm',
+        spiral: '#spiralForm',
+        repair: '#repairForm'
       }
-    });
-  }
+    };
 
-  // Підписати обробники на всі інпути для всіх форм
-  function bindInputListeners() {
-    Object.keys(selectors.forms).forEach(part => {
-      const form = document.querySelector(selectors.forms[part]);
-      if (!form) return;
-      const inputs = form.querySelectorAll('.form-group input[type="number"]');
-      const keys = ['D', 'd', 'P', 'S'];
-      keys.forEach((key, idx) => {
-        const input = inputs[idx];
-        if (!input) return;
-        input.addEventListener('input', (e) => {
-          updateField(part, key, parseNum(e.target.value));
+    // Стан калькулятора
+    var state = {
+      type: 'segment',
+      segment: { D: null, d: null, P: null, S: null },
+      spiral: { D: null, d: null, P: null, S: null },
+      repair: { D: null, d: null, P: null, S: null }
+    };
+
+    // Перетворення у число або null
+    function num(v) {
+      var n = parseFloat(v);
+      return isFinite(n) ? n : null;
+    }
+
+    // Зчитати інпути конкретної форми у стан
+    function readForm(part) {
+      var $form = $(selectors.forms[part]);
+      if (!$form.length) return;
+      var keys = ['D', 'd', 'P', 'S'];
+      $form.find('.form-group input[type="number"]').each(function (i) {
+        state[part][keys[i]] = num($(this).val());
+      });
+    }
+
+    // Показати одну форму, решту сховати; оновити стан та візуалізацію
+    function setActiveForm(part) {
+      $.each(selectors.forms, function (p, sel) {
+        var $el = $(sel);
+        if (!$el.length) return;
+        if (p === part) { $el.show(); } else { $el.hide(); }
+      });
+      state.type = part;
+      readForm(part);
+      updateRadioVisual(part);
+    }
+
+    // Позначити активну кнопку (для label.btn)
+    function updateRadioVisual(active) {
+      var $radios = $('input[name="' + selectors.radioName + '"]');
+      $radios.each(function () {
+        var $label = $(this).closest('label.btn');
+        if (!$label.length) return;
+        var isActive = $(this).val() === active && this.checked;
+        $label.toggleClass('active', isActive);
+      });
+    }
+
+    // Прив'язати слухачі до інпутів усіх форм
+    function bindInputs() {
+      $.each(selectors.forms, function (part, sel) {
+        var $form = $(sel);
+        if (!$form.length) return;
+        var keys = ['D', 'd', 'P', 'S'];
+        $form.find('.form-group input[type="number"]').each(function (i) {
+          $(this).on('input', function () {
+            state[part][keys[i]] = num($(this).val());
+          });
         });
       });
-    });
-  }
+    }
 
-  // Підписати обробники на перемикання типу шнека (radio)
-  function bindRadio() {
-    const radios = document.querySelectorAll(`input[name="${selectors.radioName}"]`);
-    radios.forEach(r => {
-      r.addEventListener('change', (e) => {
-        if (e.target.checked) {
-          showForm(e.target.value);
-        }
+    // Перемикання типу шнека (radio)
+    function bindRadios() {
+      $('input[name="' + selectors.radioName + '"]').on('change', function () {
+        if (this.checked) setActiveForm($(this).val());
       });
-    });
-  }
+    }
 
-  // Ініціалізація модуля
-  function init() {
-    bindRadio();
-    bindInputListeners();
-    // Встановити початково активну форму
-    const checked = document.querySelector(`input[name="${selectors.radioName}"]:checked`);
-    const initial = checked ? checked.value : 'segment';
-    showForm(initial);
-  }
+    // Ініціалізація: підписки та встановлення початкової форми
+    bindRadios();
+    bindInputs();
+    var initial = $('input[name="' + selectors.radioName + '"]:checked').val() || 'segment';
+    setActiveForm(initial);
 
-  // Експортуємо методи для можливого використання ззовні (debug/розширення)
-  window.ScrewCalc = {
-    state,
-    updateField,
-    updateFromForm,
-    showForm
-  };
-
-  document.addEventListener('DOMContentLoaded', init);
-})();
+    // Простий API для дебагу
+    window.ScrewCalc = {
+      state: state,
+      setActiveForm: setActiveForm,
+      readForm: readForm
+    };
+  });
+})(window.jQuery);
