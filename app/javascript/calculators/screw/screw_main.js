@@ -49,7 +49,11 @@
       $.each(selectors.forms, function (p, sel) {
         var $el = $(sel);
         if (!$el.length) return;
-        if (p === part) { $el.show(); } else { $el.hide(); }
+        var isActive = (p === part);
+        // Робимо сумісним із Bootstrap (.d-none) та native hidden
+        $el.toggleClass('d-none', !isActive)
+           .prop('hidden', !isActive);
+        if (isActive) { $el.show(); } else { $el.hide(); }
       });
       state.type = part;
       readForm(part);
