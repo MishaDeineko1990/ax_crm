@@ -2,20 +2,37 @@
   <%= stylesheet_link_tag 'calculator' %>
   <div class="card">
     <div class="card-header">
-      <div class="w-100 mb-0">
-        <div id="screwTypeHeader" class="screw-type-header">Шнеки</div>
-        <div id="screwTypeOptions" class="btn-group btn-group-toggle screw-type-options d-none" data-toggle="buttons">
-          <label class="btn btn-secondary active">
-            <input type="radio" name="screwType" value="segment" autocomplete="off" checked> Сегмент
-          </label>
-          <label class="btn btn-secondary">
-            <input type="radio" name="screwType" value="spiral" autocomplete="off"> Спіраль
-          </label>
-          <label class="btn btn-secondary">
-            <input type="radio" name="screwType" value="repair" autocomplete="off"> Ремонт шнека
-          </label>
-        </div>
-      </div>
+
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink_screw" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Шнек
+  </a>
+  
+  <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
+    <ul class="list-unstyled">
+      
+      <li>
+        <label class="btn btn-secondary active">
+          <input type="radio" name="screwType" value="segment" autocomplete="off" checked> Сегмент
+        </label>
+      </li>
+
+      <li>
+        <label class="btn btn-secondary">
+          <input type="radio" name="screwType" value="spiral" autocomplete="off"> Спіраль
+        </label>
+      </li>
+
+      <li>          
+        <label class="btn btn-secondary">
+          <input type="radio" name="screwType" value="repair" autocomplete="off"> Ремонт шнека
+        </label>
+      </li>
+
+    </ul>
+  </div>
+</li>
+
     </div>
     <div class="card-body chain-conv-form">
 
