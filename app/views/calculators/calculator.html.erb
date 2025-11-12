@@ -1,22 +1,23 @@
 <div class="container chain-conv-container">
-  <%= stylesheet_link_tag 'chain_conv' %>
+  <%= stylesheet_link_tag 'calculator' %>
   <div class="card">
     <div class="card-header">
-      Калькулятор шнека
+      <div class="w-100 mb-0">
+        <div id="screwTypeHeader" class="screw-type-header">Шнеки</div>
+        <div id="screwTypeOptions" class="btn-group btn-group-toggle screw-type-options d-none" data-toggle="buttons">
+          <label class="btn btn-secondary active">
+            <input type="radio" name="screwType" value="segment" autocomplete="off" checked> Сегмент
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="screwType" value="spiral" autocomplete="off"> Спіраль
+          </label>
+          <label class="btn btn-secondary">
+            <input type="radio" name="screwType" value="repair" autocomplete="off"> Ремонт шнека
+          </label>
+        </div>
+      </div>
     </div>
     <div class="card-body chain-conv-form">
-      <!-- Меню з перемикачами -->
-      <div class="btn-group btn-group-toggle w-100 mb-4" data-toggle="buttons">
-        <label class="btn btn-secondary active">
-          <input type="radio" name="screwType" value="segment" autocomplete="off" checked> Сегмент
-        </label>
-        <label class="btn btn-secondary">
-          <input type="radio" name="screwType" value="spiral" autocomplete="off"> Спіраль
-        </label>
-        <label class="btn btn-secondary">
-          <input type="radio" name="screwType" value="repair" autocomplete="off"> Ремонт шнека
-        </label>
-      </div>
 
       <!-- Обгортка з формами -->
       <div id="screwForms">
@@ -35,6 +36,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const segment = document.getElementById('segmentForm');
   const spiral = document.getElementById('spiralForm');
   const repair = document.getElementById('repairForm');
+  const header = document.getElementById('screwTypeHeader');
+  const options = document.getElementById('screwTypeOptions');
 
   function showForm(type) {
     // Скидаємо стан
@@ -47,11 +50,29 @@ document.addEventListener('DOMContentLoaded', function() {
     if (type === 'repair') repair.classList.remove('d-none');
   }
 
+  function updateHeaderBold() {
+    const checked = document.querySelector('input[name="screwType"]:checked');
+    if (checked) {
+      header.classList.add('selected');
+    } else {
+      header.classList.remove('selected');
+    }
+  }
+
+  header.addEventListener('click', function() {
+    options.classList.toggle('d-none');
+  });
+
   radios.forEach(r => {
-    r.addEventListener('change', () => showForm(r.value));
+    r.addEventListener('change', () => {
+      showForm(r.value);
+      updateHeaderBold();
+    });
   });
 
   // Початковий стан
-  showForm('segment');
+  const initial = document.querySelector('input[name="screwType"]:checked');
+  showForm(initial ? initial.value : 'segment');
+  updateHeaderBold();
 });
 </script>
