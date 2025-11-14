@@ -18,9 +18,9 @@
                   Шнек
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Сегменти</a></li>
-                  <li><a class="dropdown-item" href="#">Цільнотягнута спіраль</a></li>
-                  <li><a class="dropdown-item" href="#">Ремонт Шнека</a></li>
+                  <li><a class="dropdown-item" href="#" data-target="segment">Сегменти</a></li>
+                  <li><a class="dropdown-item" href="#" data-target="spiral">Цільнотягнута спіраль</a></li>
+                  <li><a class="dropdown-item" href="#" data-target="repair">Ремонт Шнека</a></li>
                 </ul>
               </li>
             </ul>
@@ -29,7 +29,7 @@
       </nav>
 
     </div>
-    <div class="card-body chain-conv-form">x
+    <div class="card-body chain-conv-form">
 
       <!-- Обгортка з формами -->
       <div id="screwForms">
@@ -44,12 +44,10 @@
 <script>
 // Перемикання між формами
 document.addEventListener('DOMContentLoaded', function() {
-  const radios = document.querySelectorAll('input[name="screwType"]');
   const segment = document.getElementById('segmentForm');
   const spiral = document.getElementById('spiralForm');
   const repair = document.getElementById('repairForm');
-  const header = document.getElementById('screwTypeHeader');
-  const options = document.getElementById('screwTypeOptions');
+  const menuItems = document.querySelectorAll('.dropdown-menu .dropdown-item');
 
   function showForm(type) {
     // Скидаємо стан
@@ -62,29 +60,18 @@ document.addEventListener('DOMContentLoaded', function() {
     if (type === 'repair') repair.classList.remove('d-none');
   }
 
-  function updateHeaderBold() {
-    const checked = document.querySelector('input[name="screwType"]:checked');
-    if (checked) {
-      header.classList.add('selected');
-    } else {
-      header.classList.remove('selected');
-    }
-  }
-
-  header.addEventListener('click', function() {
-    options.classList.toggle('d-none');
-  });
-
-  radios.forEach(r => {
-    r.addEventListener('change', () => {
-      showForm(r.value);
-      updateHeaderBold();
+  // Перемикання через меню
+  menuItems.forEach(item => {
+    item.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = item.getAttribute('data-target');
+      if (target) {
+        showForm(target);
+      }
     });
   });
 
   // Початковий стан
-  const initial = document.querySelector('input[name="screwType"]:checked');
-  showForm(initial ? initial.value : 'segment');
-  updateHeaderBold();
+  showForm('segment');
 });
 </script>
