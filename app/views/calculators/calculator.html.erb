@@ -10,7 +10,7 @@
             <span class="navbar-toggler-icon"></span>
           </button>
           
-          <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <%# <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
@@ -27,19 +27,53 @@
                 </ul>
               </li>
             </ul>
-          </div>
+          </div> %>
         </div>
       </nav>
 
     </div>
     <div class="card-body chain-conv-form">
+ <!-- Обгортка з формами -->
+      
+
+      <div id="repairForm" class="screw-form d-none">
+        <h5 class="mb-3">Ремонт шнека</h5>
+        <div class="row">
+          <div class="col-6 col-md-3">
+            <div class="form-group mb-2">
+              <label>D</label>
+              <input type="number" class="form-control form-control-sm bg-secondary text-light border-0" placeholder="D">
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="form-group mb-2">
+              <label>d</label>
+              <input type="number" class="form-control form-control-sm bg-secondary text-light border-0" placeholder="d">
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="form-group mb-2">
+              <label>P</label>
+              <input type="number" class="form-control form-control-sm bg-secondary text-light border-0" placeholder="P">
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="form-group mb-2">
+              <label>S</label>
+              <input type="number" class="form-control form-control-sm bg-secondary text-light border-0" placeholder="S">
+            </div>
+          </div>
+        </div>
+      </div>
+
+
 
       <!-- Обгортка з формами -->
-      <div id="screwForms">
-        <%= render 'calculators/screw_segment' %>
-        <%= render 'calculators/screw_spiral' %>
+      <%# <div id="screwForms">
+        <%= render 'calculators/screw_segment' %
+        <%= render 'calculators/screw_spiral' %
         <%= render 'calculators/screw_repair' %>
-      </div>
+      </div> 
     </div>
   </div>
 </div>
