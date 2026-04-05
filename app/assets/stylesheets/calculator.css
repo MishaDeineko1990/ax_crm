@@ -1,0 +1,25 @@
+
+.screw-type-header {
+    display: block;
+    cursor: pointer;
+    color: #212529;
+    font-weight: 400;
+}
+
+.screw-type-header.selected {
+    font-weight: 700;
+}
+
+.screw-type-options .btn {
+    background: none;
+    border: none;
+    color: #212529;
+    padding: 0;
+    margin-right: 12px;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.screw-type-options .btn.active {
+    font-weight: 700;
+}

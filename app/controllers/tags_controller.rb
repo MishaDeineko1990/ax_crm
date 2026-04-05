@@ -66,6 +66,6 @@ class TagsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def tag_params
-      params.require(:tag).permit(:t1, :t2, :t3, :t4, :t5, :t6, :t7)
+      params.require(:tag).permit(:t1)
     end
 end

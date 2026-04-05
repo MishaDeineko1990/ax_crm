@@ -35,21 +35,10 @@
 </li>
     
 
-<li class="nav-item dropdown">
-  <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<li class="nav-item">
+  <%= link_to calculators_calculator_path, class: "nav-link text-white" do %>
     <i class="material-icons">calculate</i>
-  </a>
-  <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdownMenuLink">
-    <ul class="list-unstyled">
-      <li><%= link_to "Шнек", calculators_screw_path, class: "custom-link" %></li>
-      <li><%= link_to "Спіраль та сегменти", calculators_screw_spiral_path, class: "custom-link" %></li>
-      <li><%= link_to "Шнековий транспортер", calculators_screw_transp_path, class: "custom-link" %></li>
-      <li><%= link_to "Норія", calculators_noria_path, class: "custom-link" %></li>
-      <li><%= link_to "Стрічковий транспортер", calculators_belt_conw_path, class: "custom-link" %></li>
-      <li><%= link_to "Ланцюговий транспортер", calculators_chain_conv_path, class: "custom-link" %></li>
-      <li><%= link_to "Силос", calculators_silo_path, class: "custom-link" %></li>
-    </ul>
-  </div>
+  <% end %>
 </li>
 
 

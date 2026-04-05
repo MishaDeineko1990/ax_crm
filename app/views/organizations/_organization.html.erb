@@ -1,67 +1,293 @@
-<div id="<%= dom_id organization %>">
-  <p>
-    <strong>Name:</strong>
-    <%= organization.name %>
-  </p>
+<style>
+  .organization-card {
+    background: linear-gradient(135deg, #2d3748 0%, #1a202c 100%);
+    border: 1px solid #4a5568;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    color: #e2e8f0;
+    margin: 1.5rem 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+  
+  .organization-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+    border-color: #63b3ed;
+  }
+  
+  .org-header {
+    background: linear-gradient(90deg, #4a5568 0%, #2d3748 100%);
+    padding: 1.5rem;
+    border-bottom: 1px solid #4a5568;
+  }
+  
+  .org-title {
+    color: #63b3ed;
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  }
+  
+  .org-subtitle {
+    color: #a0aec0;
+    font-size: 0.9rem;
+    margin: 0.25rem 0 0 0;
+    font-weight: 400;
+  }
+  
+  .org-content {
+    padding: 1.5rem;
+  }
+  
+  .org-section {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background-color: rgba(45, 55, 72, 0.3);
+    border-radius: 8px;
+    border-left: 3px solid #63b3ed;
+  }
+  
+  .org-section:last-child {
+    margin-bottom: 0;
+  }
+  
+  .section-title {
+    color: #63b3ed;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .org-field {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(74, 85, 104, 0.3);
+  }
+  
+  .org-field:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+  
+  .field-label {
+    color: #a0aec0;
+    font-weight: 500;
+    font-size: 0.875rem;
+    min-width: 120px;
+    flex-shrink: 0;
+  }
+  
+  .field-value {
+    color: #e2e8f0;
+    font-weight: 400;
+    text-align: right;
+    flex-grow: 1;
+    word-break: break-word;
+  }
+  
+  .field-value.empty {
+    color: #718096;
+    font-style: italic;
+  }
+  
+  .org-badge {
+    display: inline-block;
+    background-color: #4a5568;
+    color: #e2e8f0;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid #63b3ed;
+  }
+  
+  .btn-outline-info {
+    color: #63b3ed;
+    border-color: #63b3ed;
+    background-color: transparent;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-outline-info:hover {
+    color: #e2e8f0;
+    background-color: #63b3ed;
+    border-color: #63b3ed;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(99, 179, 237, 0.3);
+  }
+  
+  .btn-outline-info:focus {
+    box-shadow: 0 0 0 0.2rem rgba(99, 179, 237, 0.25);
+  }
+  
+  .btn-outline-info i {
+    transition: transform 0.3s ease;
+  }
+  
+  .btn-outline-info[aria-expanded="true"] i {
+    transform: rotate(180deg);
+  }
+  
+  @media (max-width: 768px) {
+    .org-field {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+    }
+    
+    .field-label {
+      min-width: auto;
+    }
+    
+    .field-value {
+      text-align: left;
+    }
+    
+    .org-content {
+      padding: 1rem;
+    }
+    
+    .org-header {
+      padding: 1rem;
+    }
+  }
+</style>
 
-  <p>
-    <strong>Short name:</strong>
-    <%= organization.short_name %>
-  </p>
+<div id="<%= dom_id organization %>" class="organization-card">
+  <!-- Заголовок організації -->
+  <div class="org-header">
+    <h3 class="org-title">
+      🏢 <%= organization.name.present? ? organization.name : "Назва не вказана" %>
+    </h3>
+    <% if organization.short_name.present? %>
+      <p class="org-subtitle"><%= organization.short_name %></p>
+    <% end %>
+  </div>
 
-  <p>
-    <strong>Ederpou:</strong>
-    <%= organization.ederpou %>
-  </p>
+  <div class="org-content">
+    <!-- Основна інформація (завжди видима) -->
+    <div class="org-section">
+      <div class="org-field">
+        <span class="field-label">ЄДРПОУ:</span>
+        <span class="field-value <%= 'empty' unless organization.ederpou.present? %>">
+          <%= organization.ederpou.present? ? organization.ederpou : "Не вказано" %>
+        </span>
+      </div>
+      
+      <div class="org-field">
+        <span class="field-label">Телефон:</span>
+        <span class="field-value <%= 'empty' unless organization.phone.present? %>">
+          <%= organization.phone.present? ? organization.phone : "Не вказано" %>
+        </span>
+      </div>
+      
+      <div class="org-field">
+        <span class="field-label">Email:</span>
+        <span class="field-value <%= 'empty' unless organization.mail.present? %>">
+          <%= organization.mail.present? ? organization.mail : "Не вказано" %>
+        </span>
+      </div>
+     
+      <div class="org-field">
+        <span class="field-label">Адреса доставки:</span>
+        <span class="field-value <%= 'empty' unless organization.send_adress.present? %>">
+          <%= organization.send_adress.present? ? organization.send_adress : "Не вказано" %>
+        </span>
+      </div>
+    
+    </div>
 
-  <p>
-    <strong>Ipn:</strong>
-    <%= organization.ipn %>
-  </p>
+    <!-- Кнопка для розкриття додаткової інформації -->
+    <div class="text-center mb-3">
+      <button class="btn btn-outline-info btn-sm" type="button" data-toggle="collapse" data-target="#details-<%= organization.id %>" aria-expanded="false" aria-controls="details-<%= organization.id %>">
+        <i class="fas fa-chevron-down"></i> Детальна інформація
+      </button>
+    </div>
 
-  <p>
-    <strong>Type rent:</strong>
-    <%= organization.type_rent %>
-  </p>
+    <!-- Додаткова інформація (розкривається) -->
+    <div class="collapse" id="details-<%= organization.id %>">
+      <!-- Додаткова основна інформація -->
+      <div class="org-section">
+        <h4 class="section-title">
+          📋 Додаткова інформація
+        </h4>
+        
+        <div class="org-field">
+          <span class="field-label">ІПН:</span>
+          <span class="field-value <%= 'empty' unless organization.ipn.present? %>">
+            <%= organization.ipn.present? ? organization.ipn : "Не вказано" %>
+          </span>
+        </div>
+        
+        <div class="org-field">
+          <span class="field-label">Тип оподаткування:</span>
+          <span class="field-value <%= 'empty' unless organization.type_rent.present? %>">
+            <% if organization.type_rent.present? %>
+              <span class="org-badge"><%= organization.type_rent %></span>
+            <% else %>
+              Не вказано
+            <% end %>
+          </span>
+        </div>
+      </div>
 
-  <p>
-    <strong>Factic address:</strong>
-    <%= organization.factic_address %>
-  </p>
+      <!-- Адреси -->
+      <div class="org-section">
+        <h4 class="section-title">
+          📍 Адреси
+        </h4>
+        
+        <div class="org-field">
+          <span class="field-label">Фактична:</span>
+          <span class="field-value <%= 'empty' unless organization.factic_address.present? %>">
+            <%= organization.factic_address.present? ? organization.factic_address : "Не вказано" %>
+          </span>
+        </div>
+        
+        <div class="org-field">
+          <span class="field-label">Юридична:</span>
+          <span class="field-value <%= 'empty' unless organization.legal_address.present? %>">
+            <%= organization.legal_address.present? ? organization.legal_address : "Не вказано" %>
+          </span>
+        </div>
 
-  <p>
-    <strong>Legal address:</strong>
-    <%= organization.legal_address %>
-  </p>
+      </div>
 
-  <p>
-    <strong>Send address:</strong>
-    <%= organization.send_adress %>
-  </p>
-
-  <p>
-    <strong>Number count bank:</strong>
-    <%= organization.number_count_bank %>
-  </p>
-
-  <p>
-    <strong>Mfo:</strong>
-    <%= organization.mfo %>
-  </p>
-
-  <p>
-    <strong>Name and requisites bank:</strong>
-    <%= organization.name_and_requisites_bank %>
-  </p>
-
-  <p>
-    <strong>Phone:</strong>
-    <%= organization.phone %>
-  </p>
-
-  <p>
-    <strong>Mail:</strong>
-    <%= organization.mail %>
-  </p>
-
+      <!-- Банківські реквізити -->
+      <div class="org-section">
+        <h4 class="section-title">
+          🏦 Банківські реквізити
+        </h4>
+        
+        <div class="org-field">
+          <span class="field-label">Номер рахунку:</span>
+          <span class="field-value <%= 'empty' unless organization.number_count_bank.present? %>">
+            <%= organization.number_count_bank.present? ? organization.number_count_bank : "Не вказано" %>
+          </span>
+        </div>
+        
+        <div class="org-field">
+          <span class="field-label">МФО:</span>
+          <span class="field-value <%= 'empty' unless organization.mfo.present? %>">
+            <%= organization.mfo.present? ? organization.mfo : "Не вказано" %>
+          </span>
+        </div>
+        
+        <div class="org-field">
+          <span class="field-label">Банк:</span>
+          <span class="field-value <%= 'empty' unless organization.name_and_requisites_bank.present? %>">
+            <%= organization.name_and_requisites_bank.present? ? organization.name_and_requisites_bank : "Не вказано" %>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
